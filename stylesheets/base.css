@@ -10,16 +10,17 @@ body {
   width: 480px;
   height: 720px;
   border: 5px solid gray;
+  font-family: "Raleway", Arial, sans-serif;
 }
 
-/* line 13, ../sass/base.scss */
+/* line 14, ../sass/base.scss */
 #appWrapper {
   width: 480px;
   height: 720px;
   display: block;
 }
 
-/* line 19, ../sass/base.scss */
+/* line 20, ../sass/base.scss */
 #header {
   height: 80px;
   background-color: #52A2FF;
@@ -27,7 +28,7 @@ body {
   position: relative;
   border-bottom: 4px solid #D3D3D3;
 }
-/* line 25, ../sass/base.scss */
+/* line 26, ../sass/base.scss */
 #header #menu {
   color: white;
   text-decoration: none;
@@ -42,7 +43,7 @@ body {
   top: 0;
   left: 0;
 }
-/* line 39, ../sass/base.scss */
+/* line 40, ../sass/base.scss */
 #header h1 {
   width: auto;
   margin: 0 auto;
@@ -50,14 +51,14 @@ body {
   line-height: 80px;
   text-align: center;
 }
-/* line 47, ../sass/base.scss */
+/* line 48, ../sass/base.scss */
 #header #search {
   display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
 }
-/* line 52, ../sass/base.scss */
+/* line 53, ../sass/base.scss */
 #header #search img {
   padding-right: 10px;
   padding-top: 17px;
