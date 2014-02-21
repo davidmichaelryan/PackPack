@@ -22,4 +22,45 @@ body {
 #appWrapper #header {
   height: 80px;
   background-color: #52A2FF;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 4px solid #DDDDDD;
+}
+/* line 24, ../sass/base.scss */
+#appWrapper #header #menu {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  float: left;
+  margin-left: 8px;
+  border: 1px solid white;
+  margin-top: 28px;
+  margin-bottom: 28px;
+  padding: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* line 38, ../sass/base.scss */
+#appWrapper #header h1 {
+  width: auto;
+  margin: 0 auto;
+  color: white;
+  line-height: 80px;
+  text-align: center;
+}
+/* line 46, ../sass/base.scss */
+#appWrapper #header #search {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/* line 51, ../sass/base.scss */
+#appWrapper #header #search img {
+  padding-right: 10px;
+  padding-top: 17px;
+  width: 50%;
+  height: auto;
+  float: right;
 }
