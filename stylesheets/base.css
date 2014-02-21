@@ -18,16 +18,17 @@ body {
   height: 720px;
   display: block;
 }
-/* line 18, ../sass/base.scss */
-#appWrapper #header {
+
+/* line 19, ../sass/base.scss */
+#header {
   height: 80px;
   background-color: #52A2FF;
   overflow: hidden;
   position: relative;
-  border-bottom: 4px solid #DDDDDD;
+  border-bottom: 4px solid #D3D3D3;
 }
-/* line 24, ../sass/base.scss */
-#appWrapper #header #menu {
+/* line 25, ../sass/base.scss */
+#header #menu {
   color: white;
   text-decoration: none;
   display: inline-block;
@@ -41,26 +42,54 @@ body {
   top: 0;
   left: 0;
 }
-/* line 38, ../sass/base.scss */
-#appWrapper #header h1 {
+/* line 39, ../sass/base.scss */
+#header h1 {
   width: auto;
   margin: 0 auto;
   color: white;
   line-height: 80px;
   text-align: center;
 }
-/* line 46, ../sass/base.scss */
-#appWrapper #header #search {
+/* line 47, ../sass/base.scss */
+#header #search {
   display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
 }
-/* line 51, ../sass/base.scss */
-#appWrapper #header #search img {
+/* line 52, ../sass/base.scss */
+#header #search img {
   padding-right: 10px;
   padding-top: 17px;
   width: 50%;
   height: auto;
   float: right;
+}
+
+/* line 63, ../sass/base.scss */
+#content-wrapper {
+  padding: 0 10px;
+}
+
+/* line 67, ../sass/base.scss */
+.list-header {
+  display: block;
+  overflow: hidden;
+  padding: 0 10px;
+}
+/* line 71, ../sass/base.scss */
+.list-header h2 {
+  display: inline-block;
+  width: auto;
+  float: left;
+}
+/* line 76, ../sass/base.scss */
+.list-header a {
+  display: inline-block;
+  width: auto;
+  height: inherit;
+  line-height: 80px;
+  float: right;
+  color: black;
+  text-decoration: none;
 }

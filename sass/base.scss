@@ -60,10 +60,26 @@ body{
 	}
 }
 
+#content-wrapper{
+	padding:0 10px;
+}
+
 .list-header{
 	display:block;
+	overflow:hidden;
+	padding:0 10px;
 	h2{
 		display:inline-block;
+		width:auto;
 		float:left;
+	}
+	a{
+		display:inline-block;
+		width:auto;
+		height:inherit;
+		line-height: 80px;
+		float:right;
+		color:black;
+		text-decoration:none;
 	}
 }
