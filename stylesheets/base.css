@@ -1,0 +1,25 @@
+/* line 1, ../sass/base.scss */
+html {
+  margin: 0;
+}
+
+/* line 5, ../sass/base.scss */
+body {
+  margin: 20px auto;
+  padding: 0px;
+  width: 480px;
+  height: 720px;
+  border: 5px solid gray;
+}
+
+/* line 13, ../sass/base.scss */
+#appWrapper {
+  width: 480px;
+  height: 720px;
+  display: block;
+}
+/* line 18, ../sass/base.scss */
+#appWrapper #header {
+  height: 80px;
+  background-color: #52A2FF;
+}
