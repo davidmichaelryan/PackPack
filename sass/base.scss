@@ -33,24 +33,23 @@ body{
 	position:relative;
 	border-bottom:4px solid #D3D3D3;
 	#menu{
-		color:white;
-		text-decoration:none;
 		display:inline-block;
 		float:left;
-		margin-left:8px;
-		border:1px solid white;
-		margin-top:28px;
-		margin-bottom:28px;
-		padding:2px;
 		position:absolute;
-		top:0;
-		left:0;
+		top: 25px;
+		left: 20px;
+		height: 5px;
+		width: 30px;
+		border-bottom: 17px double white;
+		border-top: 6px solid white;
+		content: "";
 	}
 	h1{	
 		width:auto;
 		color:white;
 		line-height:80px;
 		text-align:center;
+		font-weight: 400;
 	}
 	#search{
 		display:inline-block;
@@ -58,7 +57,7 @@ body{
 		top:0;
 		right:0;			
 		img{
-			padding-right:10px;
+			padding-right:22px;
 			padding-top:27px;
 			width:26px;
 			height:auto;

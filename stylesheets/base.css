@@ -40,43 +40,42 @@ body {
 }
 /* line 35, ../sass/base.scss */
 #header #menu {
-  color: white;
-  text-decoration: none;
   display: inline-block;
   float: left;
-  margin-left: 8px;
-  border: 1px solid white;
-  margin-top: 28px;
-  margin-bottom: 28px;
-  padding: 2px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 25px;
+  left: 20px;
+  height: 5px;
+  width: 30px;
+  border-bottom: 17px double white;
+  border-top: 6px solid white;
+  content: "";
 }
-/* line 49, ../sass/base.scss */
+/* line 47, ../sass/base.scss */
 #header h1 {
   width: auto;
   color: white;
   line-height: 80px;
   text-align: center;
+  font-weight: 400;
 }
-/* line 55, ../sass/base.scss */
+/* line 54, ../sass/base.scss */
 #header #search {
   display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
 }
-/* line 60, ../sass/base.scss */
+/* line 59, ../sass/base.scss */
 #header #search img {
-  padding-right: 10px;
+  padding-right: 22px;
   padding-top: 27px;
   width: 26px;
   height: auto;
   float: right;
 }
 
-/* line 70, ../sass/base.scss */
+/* line 69, ../sass/base.scss */
 #content-wrapper {
   overflow: scroll;
   height: 100%;
@@ -84,7 +83,7 @@ body {
   padding: 0 25px 0 10px;
 }
 
-/* line 80, ../sass/base.scss */
+/* line 79, ../sass/base.scss */
 .list-header {
   display: block;
   overflow: hidden;
@@ -92,13 +91,13 @@ body {
   border-top: 2px solid #D3D3D3;
   border-bottom: 2px solid #D3D3D3;
 }
-/* line 86, ../sass/base.scss */
+/* line 85, ../sass/base.scss */
 .list-header h2 {
   display: inline-block;
   line-height: 60px;
   float: left;
 }
-/* line 91, ../sass/base.scss */
+/* line 90, ../sass/base.scss */
 .list-header a {
   display: inline-block;
   line-height: 60px;
@@ -109,7 +108,7 @@ body {
   font-weight: 200;
 }
 
-/* line 102, ../sass/base.scss */
+/* line 101, ../sass/base.scss */
 #lists .list-header {
   border-top: none;
 }
