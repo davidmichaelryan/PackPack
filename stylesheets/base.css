@@ -11,23 +11,26 @@ html, h1, h2, p, a, img {
 
 /* line 10, ../sass/base.scss */
 body {
+  overflow: scroll;
+  width: 480px;
+  height: 700px;
   margin: 20px auto;
   padding: 0px;
-  width: 480px;
   border: 5px solid gray;
   font-family: "Raleway", Arial, sans-serif;
   border-radius: 3px;
 }
 
-/* line 19, ../sass/base.scss */
+/* line 21, ../sass/base.scss */
 #appWrapper {
-  width: 100%;
-  height: auto;
   display: block;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
   margin-bottom: 10px;
 }
 
-/* line 26, ../sass/base.scss */
+/* line 29, ../sass/base.scss */
 #header {
   height: 80px;
   background-color: #52A2FF;
@@ -35,7 +38,7 @@ body {
   position: relative;
   border-bottom: 4px solid #D3D3D3;
 }
-/* line 32, ../sass/base.scss */
+/* line 35, ../sass/base.scss */
 #header #menu {
   color: white;
   text-decoration: none;
@@ -50,21 +53,21 @@ body {
   top: 0;
   left: 0;
 }
-/* line 46, ../sass/base.scss */
+/* line 49, ../sass/base.scss */
 #header h1 {
   width: auto;
   color: white;
   line-height: 80px;
   text-align: center;
 }
-/* line 52, ../sass/base.scss */
+/* line 55, ../sass/base.scss */
 #header #search {
   display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
 }
-/* line 57, ../sass/base.scss */
+/* line 60, ../sass/base.scss */
 #header #search img {
   padding-right: 10px;
   padding-top: 27px;
@@ -73,12 +76,15 @@ body {
   float: right;
 }
 
-/* line 67, ../sass/base.scss */
+/* line 70, ../sass/base.scss */
 #content-wrapper {
-  padding: 0 10px;
+  overflow: scroll;
+  height: 100%;
+  width: 470px;
+  padding: 0 25px 0 10px;
 }
 
-/* line 71, ../sass/base.scss */
+/* line 80, ../sass/base.scss */
 .list-header {
   display: block;
   overflow: hidden;
@@ -86,13 +92,13 @@ body {
   border-top: 2px solid #D3D3D3;
   border-bottom: 2px solid #D3D3D3;
 }
-/* line 77, ../sass/base.scss */
+/* line 86, ../sass/base.scss */
 .list-header h2 {
   display: inline-block;
   line-height: 60px;
   float: left;
 }
-/* line 82, ../sass/base.scss */
+/* line 91, ../sass/base.scss */
 .list-header a {
   display: inline-block;
   line-height: 60px;
@@ -103,7 +109,7 @@ body {
   font-weight: 200;
 }
 
-/* line 93, ../sass/base.scss */
+/* line 102, ../sass/base.scss */
 #lists .list-header {
   border-top: none;
 }
