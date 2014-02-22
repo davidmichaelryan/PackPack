@@ -1,3 +1,5 @@
+$menu-width: 400px;
+
 html, h1, h2, p, a, img{
 	margin:0 auto;
 }
@@ -20,10 +22,20 @@ body{
 
 #appWrapper{
 	display: block;
+	position: relative;
 	overflow: hidden;
 	height: 100%;
 	width: 100%;
 	margin-bottom:10px;
+}
+
+#main-screen {
+	position: relative;
+	left: 0px;
+
+	&.screen-push {
+		left: $menu-width;
+	}
 }
 
 #header{
@@ -32,7 +44,7 @@ body{
 	overflow:hidden;
 	position:relative;
 	border-bottom:4px solid #D3D3D3;
-	#menu{
+	#menu-button{
 		display:inline-block;
 		float:left;
 		position:absolute;
@@ -102,3 +114,22 @@ body{
 	border-top:none;
 }
 
+#menu {
+	position: absolute;
+	width: $menu-width;
+	height: 100%;
+	top: 0;
+	left: -1 * $menu-width;
+	z-index: 1000;
+	background-color: #ECF0F1;
+
+	&.menu-push {
+		left: 0px;
+	}
+}
+
+#menu, #main-screen {
+	-webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
