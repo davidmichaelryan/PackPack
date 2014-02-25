@@ -156,6 +156,7 @@ body{
 		float:right;
 		display: inline-block;
 	}
+}
 
 .list-controls {
 	@include box-sizing(border-box);
@@ -171,6 +172,7 @@ body{
 		text-decoration: none;
 		color: $black;
 	}
+}
 
 #menu {
 	position: absolute;
