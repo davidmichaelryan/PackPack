@@ -87,7 +87,7 @@ body {
 }
 
 /* line 81, ../sass/base.scss */
-#content-wrapper {
+.content-wrapper {
   overflow: scroll;
   height: 100%;
   width: 470px;
