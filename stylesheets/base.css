@@ -129,14 +129,32 @@ body {
   margin: 5px 0 20px 0;
   padding: 0;
   list-style: none;
+  overflow: hidden;
+  display: block;
 }
 
-/* line 123, ../sass/base.scss */
+/* line 125, ../sass/base.scss */
 .list-object {
+  border-bottom: 1px dashed #D3D3D3;
   padding: 10px;
+  overflow: hidden;
+  display: block;
+}
+/* line 130, ../sass/base.scss */
+.list-object a {
+  text-align: left;
+  display: block;
+  color: black;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+/* line 137, ../sass/base.scss */
+.list-object span {
+  float: right;
+  display: inline-block;
 }
 
-/* line 127, ../sass/base.scss */
+/* line 144, ../sass/base.scss */
 #menu {
   position: absolute;
   width: 400px;
@@ -146,12 +164,12 @@ body {
   z-index: 1000;
   background-color: #ECF0F1;
 }
-/* line 136, ../sass/base.scss */
+/* line 153, ../sass/base.scss */
 #menu.menu-push {
   left: 0px;
 }
 
-/* line 141, ../sass/base.scss */
+/* line 158, ../sass/base.scss */
 #menu, #main-screen {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
