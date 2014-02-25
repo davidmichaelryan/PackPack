@@ -1,177 +1,68 @@
-/* line 3, ../sass/base.scss */
-html, h1, h2, p, a, img {
-  margin: 0 auto;
-}
+/*
+Syntax error: Invalid CSS after "}": expected "}", was ""
+        on line 193 of /Users/patrickfweston/Documents/Northwestern/Junior Year/Winter Quarter/EECS 330/PackPack/sass/base.scss
 
-/* line 7, ../sass/base.scss */
-.place-holder {
-  width: 100%;
-  height: 200px;
-}
-
-/* line 12, ../sass/base.scss */
-body {
-  overflow: scroll;
-  width: 480px;
-  height: 700px;
-  margin: 20px auto;
-  padding: 0px;
-  border: 5px solid gray;
-  font-family: "Raleway", Arial, sans-serif;
-  border-radius: 3px;
-}
-
-/* line 23, ../sass/base.scss */
-#appWrapper {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-/* line 32, ../sass/base.scss */
-#main-screen {
-  position: relative;
-  left: 0px;
-}
-/* line 36, ../sass/base.scss */
-#main-screen.screen-push {
-  left: 400px;
-}
-
-/* line 41, ../sass/base.scss */
-#header {
-  height: 80px;
-  background-color: #52A2FF;
-  overflow: hidden;
-  position: relative;
-  border-bottom: 4px solid #D3D3D3;
-}
-/* line 47, ../sass/base.scss */
-#header #menu-button {
-  display: inline-block;
-  float: left;
-  position: absolute;
-  top: 25px;
-  left: 20px;
-  height: 5px;
-  width: 30px;
-  border-bottom: 17px double white;
-  border-top: 6px solid white;
-  content: "";
-}
-/* line 59, ../sass/base.scss */
-#header h1 {
-  width: auto;
-  color: white;
-  line-height: 80px;
-  text-align: center;
-  font-weight: 400;
-}
-/* line 66, ../sass/base.scss */
-#header #search {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-/* line 71, ../sass/base.scss */
-#header #search img {
-  padding-right: 22px;
-  padding-top: 27px;
-  width: 26px;
-  height: auto;
-  float: right;
-}
-
-/* line 81, ../sass/base.scss */
-.content-wrapper {
-  overflow: scroll;
-  height: 100%;
-  width: 460px;
-  padding: 0 35px 0 10px;
-}
-
-/* line 91, ../sass/base.scss */
-.list-header {
-  display: block;
-  overflow: hidden;
-  padding: 0 10px;
-  border-top: 2px solid #D3D3D3;
-  border-bottom: 2px solid #D3D3D3;
-}
-/* line 97, ../sass/base.scss */
-.list-header h2 {
-  display: inline-block;
-  line-height: 60px;
-  float: left;
-}
-/* line 102, ../sass/base.scss */
-.list-header a {
-  display: inline-block;
-  line-height: 60px;
-  float: right;
-  color: black;
-  text-decoration: none;
-  font-size: 3em;
-  font-weight: 200;
-}
-
-/* line 113, ../sass/base.scss */
-#lists .list-header {
-  border-top: none;
-}
-
-/* line 117, ../sass/base.scss */
-.list {
-  margin: 5px 0 30px 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
-  display: block;
-}
-
-/* line 125, ../sass/base.scss */
-.list-object {
-  border-bottom: 1px dashed #D3D3D3;
-  padding: 10px;
-  overflow: hidden;
-  display: block;
-}
-/* line 130, ../sass/base.scss */
-.list-object a {
-  text-align: left;
-  display: block;
-  color: black;
-  text-decoration: none;
-  font-size: 1.1em;
-}
-/* line 137, ../sass/base.scss */
-.list-object span {
-  float: right;
-  display: inline-block;
-}
-
-/* line 144, ../sass/base.scss */
-#menu {
-  position: absolute;
-  width: 400px;
-  height: 100%;
-  top: 0;
-  left: -400px;
-  z-index: 1000;
-  background-color: #ECF0F1;
-}
-/* line 153, ../sass/base.scss */
-#menu.menu-push {
-  left: 0px;
-}
-
-/* line 158, ../sass/base.scss */
-#menu, #main-screen {
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
+Backtrace:
+/Users/patrickfweston/Documents/Northwestern/Junior Year/Winter Quarter/EECS 330/PackPack/sass/base.scss:193
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:1147:in `expected'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:1085:in `expected'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:1080:in `tok!'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:536:in `block'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:529:in `ruleset'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:591:in `block in declaration_or_ruleset'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:1123:in `call'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:1123:in `rethrow'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:592:in `declaration_or_ruleset'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:554:in `block_child'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:546:in `block_contents'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:535:in `block'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:529:in `ruleset'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:553:in `block_child'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:546:in `block_contents'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:82:in `stylesheet'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/scss/parser.rb:27:in `parse'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/engine.rb:342:in `_to_tree'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/engine.rb:315:in `_render'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.2.13/lib/sass/engine.rb:262:in `render'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:140:in `block (2 levels) in compile'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:139:in `block in compile'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/logger.rb:45:in `red'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:138:in `compile'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:118:in `compile_if_required'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:103:in `block (2 levels) in run'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `each'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `block in run'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:100:in `run'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:147:in `recompile'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/path.rb:73:in `call'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/path.rb:73:in `run_callback'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/path.rb:55:in `callback_action'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/path.rb:35:in `update'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/state/directory.rb:39:in `block in modified'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/state/directory.rb:37:in `each'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/state/directory.rb:37:in `modified'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/state/directory.rb:18:in `refresh'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/backends/polling.rb:17:in `block (2 levels) in run'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/backends/polling.rb:17:in `each'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/backends/polling.rb:17:in `block in run'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/backends/polling.rb:15:in `loop'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/backends/polling.rb:15:in `run'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm/monitor.rb:26:in `run'
+/Library/Ruby/Gems/2.0.0/gems/fssm-0.2.10/lib/fssm.rb:70:in `monitor'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:87:in `perform'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/commands/base.rb:18:in `execute'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/commands/project_base.rb:19:in `execute'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/bin/compass:30:in `block in <top (required)>'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/bin/compass:44:in `call'
+/Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/bin/compass:44:in `<top (required)>'
+/usr/bin/compass:23:in `load'
+/usr/bin/compass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"}\": expected \"}\", was \"\"\A         on line 193 of /Users/patrickfweston/Documents/Northwestern/Junior Year/Winter Quarter/EECS 330/PackPack/sass/base.scss"; }
