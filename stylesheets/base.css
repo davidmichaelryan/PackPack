@@ -1,15 +1,15 @@
-/* line 3, ../sass/base.scss */
+/* line 10, ../sass/base.scss */
 html, h1, h2, p, a, img {
   margin: 0 auto;
 }
 
-/* line 7, ../sass/base.scss */
+/* line 14, ../sass/base.scss */
 .place-holder {
   width: 100%;
   height: 200px;
 }
 
-/* line 12, ../sass/base.scss */
+/* line 19, ../sass/base.scss */
 body {
   overflow: scroll;
   width: 480px;
@@ -21,7 +21,17 @@ body {
   border-radius: 3px;
 }
 
-/* line 23, ../sass/base.scss */
+/* line 30, ../sass/base.scss */
+.left {
+  float: left;
+}
+
+/* line 34, ../sass/base.scss */
+.right {
+  float: right;
+}
+
+/* line 38, ../sass/base.scss */
 #appWrapper {
   display: block;
   position: relative;
@@ -31,25 +41,25 @@ body {
   margin-bottom: 10px;
 }
 
-/* line 32, ../sass/base.scss */
+/* line 47, ../sass/base.scss */
 #main-screen {
   position: relative;
   left: 0px;
 }
-/* line 36, ../sass/base.scss */
+/* line 51, ../sass/base.scss */
 #main-screen.screen-push {
   left: 400px;
 }
 
-/* line 41, ../sass/base.scss */
+/* line 56, ../sass/base.scss */
 #header {
   height: 80px;
-  background-color: #52A2FF;
+  background-color: #52a2ff;
   overflow: hidden;
   position: relative;
-  border-bottom: 4px solid #D3D3D3;
+  border-bottom: 4px solid lightgrey;
 }
-/* line 47, ../sass/base.scss */
+/* line 62, ../sass/base.scss */
 #header #menu-button {
   display: inline-block;
   float: left;
@@ -62,7 +72,7 @@ body {
   border-top: 6px solid white;
   content: "";
 }
-/* line 59, ../sass/base.scss */
+/* line 74, ../sass/base.scss */
 #header h1 {
   width: auto;
   color: white;
@@ -70,14 +80,14 @@ body {
   text-align: center;
   font-weight: 400;
 }
-/* line 66, ../sass/base.scss */
+/* line 81, ../sass/base.scss */
 #header #search {
   display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
 }
-/* line 71, ../sass/base.scss */
+/* line 86, ../sass/base.scss */
 #header #search img {
   padding-right: 22px;
   padding-top: 27px;
@@ -86,29 +96,29 @@ body {
   float: right;
 }
 
-/* line 81, ../sass/base.scss */
+/* line 96, ../sass/base.scss */
 .content-wrapper {
   overflow: scroll;
-  height: 100%;
+  height: 616px;
   width: 460px;
   padding: 0 35px 0 10px;
 }
 
-/* line 91, ../sass/base.scss */
+/* line 106, ../sass/base.scss */
 .list-header {
   display: block;
   overflow: hidden;
   padding: 0 10px;
-  border-top: 2px solid #D3D3D3;
-  border-bottom: 2px solid #D3D3D3;
+  border-top: 2px solid lightgrey;
+  border-bottom: 2px solid lightgrey;
 }
-/* line 97, ../sass/base.scss */
+/* line 112, ../sass/base.scss */
 .list-header h2 {
   display: inline-block;
   line-height: 60px;
   float: left;
 }
-/* line 102, ../sass/base.scss */
+/* line 117, ../sass/base.scss */
 .list-header a {
   display: inline-block;
   line-height: 60px;
@@ -118,25 +128,54 @@ body {
   font-size: 3em;
   font-weight: 200;
 }
+/* line 126, ../sass/base.scss */
+.list-header.list-view {
+  border-top: none;
+}
 
-/* line 113, ../sass/base.scss */
+/* line 131, ../sass/base.scss */
 #lists .list-header {
   border-top: none;
 }
 
-/* line 117, ../sass/base.scss */
+/* line 135, ../sass/base.scss */
 .list {
   margin: 5px 0 20px 0;
   padding: 0;
   list-style: none;
 }
 
-/* line 123, ../sass/base.scss */
+/* line 141, ../sass/base.scss */
 .list-object {
   padding: 10px;
 }
+/* line 143, ../sass/base.scss */
+.list-object a {
+  color: inherit;
+  text-decoration: none;
+}
 
-/* line 127, ../sass/base.scss */
+/* line 149, ../sass/base.scss */
+.list-controls {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 50px;
+  padding: 15px;
+  background-color: lightgrey;
+}
+/* line 158, ../sass/base.scss */
+.list-controls a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+}
+
+/* line 165, ../sass/base.scss */
 #menu {
   position: absolute;
   width: 400px;
@@ -146,12 +185,12 @@ body {
   z-index: 1000;
   background-color: #ECF0F1;
 }
-/* line 136, ../sass/base.scss */
+/* line 174, ../sass/base.scss */
 #menu.menu-push {
   left: 0px;
 }
 
-/* line 141, ../sass/base.scss */
+/* line 179, ../sass/base.scss */
 #menu, #main-screen {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
