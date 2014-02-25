@@ -84,8 +84,8 @@ body{
 	// This is trickery to hide the scroll bar. We have to push it off the page
 	// We need to see what width we'd like it to be. For right now, I assumed a
 	// fixed width would be ok -- Patrick
-	width: 470px;
-	padding:0 25px 0 10px;
+	width: 460px;
+	padding:0 35px 0 10px;
 }
 
 .list-header{
@@ -112,6 +112,16 @@ body{
 
 #lists .list-header{
 	border-top:none;
+}
+
+.list {
+	margin: 5px 0 20px 0;
+	padding: 0;
+	list-style: none;
+}
+
+.list-object {
+	padding: 10px;
 }
 
 #menu {

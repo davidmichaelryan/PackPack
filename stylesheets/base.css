@@ -90,8 +90,8 @@ body {
 #content-wrapper {
   overflow: scroll;
   height: 100%;
-  width: 470px;
-  padding: 0 25px 0 10px;
+  width: 460px;
+  padding: 0 35px 0 10px;
 }
 
 /* line 91, ../sass/base.scss */
@@ -125,6 +125,18 @@ body {
 }
 
 /* line 117, ../sass/base.scss */
+.list {
+  margin: 5px 0 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* line 123, ../sass/base.scss */
+.list-object {
+  padding: 10px;
+}
+
+/* line 127, ../sass/base.scss */
 #menu {
   position: absolute;
   width: 400px;
@@ -134,12 +146,12 @@ body {
   z-index: 1000;
   background-color: #ECF0F1;
 }
-/* line 126, ../sass/base.scss */
+/* line 136, ../sass/base.scss */
 #menu.menu-push {
   left: 0px;
 }
 
-/* line 131, ../sass/base.scss */
+/* line 141, ../sass/base.scss */
 #menu, #main-screen {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
