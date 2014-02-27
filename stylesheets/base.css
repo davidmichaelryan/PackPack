@@ -103,14 +103,13 @@ body {
   border-bottom: 2px solid #D3D3D3;
 }
 /* line 97, ../sass/base.scss */
-.list-header h2 {
+.list-header h2{
   display: inline-block;
   line-height: 60px;
   float: left;
 }
 /* line 102, ../sass/base.scss */
-.list-header a {
-  display: inline-block;
+.list-header a{
   line-height: 60px;
   float: right;
   color: black;
