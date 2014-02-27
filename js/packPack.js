@@ -149,6 +149,17 @@ module.App = function( userName ) {
 		}
 	}
 
+	// bogus method for now
+	this.createStuff = function() {
+		var list = new module.List("School Supplies");
+		list.addItem("Ruler", "A ruler");
+		list.addItem("Pencil");
+		lists.push(list);
+
+		var list2 = new module.List("Dorm Room Stuff");
+		lists.push(list2);
+	}
+
 	/*
 	this.getGroups = function() {
 		return groups;
