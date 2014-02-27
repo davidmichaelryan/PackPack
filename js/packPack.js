@@ -1,50 +1,26 @@
 /* packPack.js */
 
-/*
-Object.prototype.clone = function() {
-  var newObj = (this instanceof Array) ? [] : {};
-  for (i in this) {
-    if (i == 'clone') continue;
-    if (this[i] && typeof this[i] == "object") {
-      newObj[i] = this[i].clone();
-    } else newObj[i] = this[i]
-  } return newObj;
-};
-*/
 
 // Prevent polluting global namespace
 var PackPack = (function() {
 
-	var app = {};
+	var module = {};
 
 
 	// Errors
-	app.Error = function( message , type) {
+	module.Error = function( message , type) {
 		this.message = (message) ? message : "Error";
 		this.type = (type) ? type : "Default";
 	};
-/*
-// User Class
-function User( properties ) {
-	var $this = this; // Store class scope in variable $this
 
-	//Iterate through the properties of the object
-    for ( var i in properties )
-    {
-        (function(i)
-        {
-            // Dynamically create an accessor method
-            $this[ "get" + i ] = function()
-            {
-                return properties[i];
-            };
-        })(i);
-    }
-}
-*/
+// User Class
+module.User = function( name ) {
+	this.name = (name) ? name : "User";
+};
+
 
 // Item Class
-app.Item = function( itemName, description ) {
+module.Item = function( itemName, description ) {
 
 	// Data
 	this.name = (itemName) ? itemName : "";
@@ -63,7 +39,7 @@ app.Item = function( itemName, description ) {
 	}
 
 	this.copy = function() {
-		var copyItem = new app.Item(this.name, this.desc);
+		var copyItem = new module.Item(this.name, this.desc);
 		copyItem.setStatus(this.getStatus());
 		return copyItem;
 	}
@@ -73,7 +49,7 @@ app.Item = function( itemName, description ) {
 
 
 // List Class
-app.List = function( name ) {
+module.List = function( name ) {
 
 	this.name = (name) ? name : "List";
 	var listItems = [];
@@ -88,46 +64,41 @@ app.List = function( name ) {
 	}
 
 	this.addItem = function( name, description ) {
-		listItems.push(new app.Item(name, description));
+		listItems.push(new module.Item(name, description));
 	}
 
 	this.removeItem = function( index ) {
 		if ((index >= 0) && (index < listItems.length)) {
 			listItems.splice(index, 1);
 		} else {
-			throw new app.Error("Invalid index given to removeItem");
+			throw new module.Error("Invalid index given to removeItem", "Index");
 		}
+	}
+
+	this.copy = function() {
+		var copyList = new module.List(this.name);
+		for (var i = 0; i < listItems.length; i++) {
+			copyList.addItem(listItems[i].name, listItems[i].desc);
+		}
+		return copyList;
 	}
 
 }
 
 
-/*
-// PackPack class
-function PackPack( userProp ) {
+
+// App class
+module.App = function( userName ) {
 	// Private Data
-	var user = new User(userProp);
+	var user = new module.User(userName);
 	var lists = [];
-	var groups = [];
+	//var groups = [];
 
-	this.getLists = function() {
-		return lists;
-	}
-
-	this.getList = function( name ) {
-		for (var i=0; i < lists.length; i++) {
-			if (lists[i].getName() == name) {
-				return lists[i];
-			}
-		}
-
-		console.log("No list found with name " + name + ".");
-	}
 
 	// Private method
 	var getIndexOfList = function( name ) {
 		for (var i=0; i < lists.length; i++) {
-			if (lists[i].getName() == name) {
+			if (lists[i].name === name) {
 				return i;
 			}
 		}
@@ -135,16 +106,36 @@ function PackPack( userProp ) {
 		return -1;
 	}
 
-	this.getGroups = function() {
-		return groups;
+
+	// Public methods
+	this.getUserName = function() {
+		return user.name;
+	}
+
+	this.getLists = function() {
+		var myLists = [];
+		for (var i = 0; i < lists.length; i++) {
+			myLists.push(lists[i].copy());
+		}
+		return myLists;
+	}
+
+	this.getList = function( name ) {
+		for (var i=0; i < lists.length; i++) {
+			if (lists[i].name == name) {
+				return lists[i].copy();
+			}
+		}
+
+		throw new module. Error("No list found with name " + name + ".", "Not Found");
 	}
 
 	this.addList = function( name ) {
 		if (getIndexOfList(name) == -1) {
-			var myList = new List(name);
+			var myList = new module.List(name);
 			lists.push(myList);
 		} else {
-			console.log("List name '" + name + "' already exists, please use another.");
+			throw new module.Error("List name '" + name + "' already exists, please use another.", "Duplicate");
 		}
 		
 	}
@@ -154,16 +145,22 @@ function PackPack( userProp ) {
 		if (index !== -1) {
 			lists.splice(index, 1);
 		} else {
-			console.log("List by name " + name + " doesn't exist.");
+			throw new module.Error("List by name " + name + " doesn't exist.", "Not Found");
 		}
 	}
 
+	/*
+	this.getGroups = function() {
+		return groups;
+	}
+	*/
+
 
 }
-*/
 
 
-	return app;
+
+	return module;
 
 }());
 
