@@ -112,25 +112,15 @@ body {
   border-top: 2px solid lightgrey;
   border-bottom: 2px solid lightgrey;
 }
-<<<<<<< HEAD
-/* line 97, ../sass/base.scss */
-.list-header h2{
-=======
 /* line 112, ../sass/base.scss */
 .list-header h2 {
->>>>>>> master
   display: inline-block;
   line-height: 60px;
   float: left;
 }
-<<<<<<< HEAD
-/* line 102, ../sass/base.scss */
-.list-header a{
-=======
 /* line 117, ../sass/base.scss */
 .list-header a {
   display: inline-block;
->>>>>>> master
   line-height: 60px;
   float: right;
   color: black;
