@@ -26,6 +26,11 @@ function addList() {
 	populateLists("#list-names");
 }
 
+function renameList() {
+	app.changeListName("Dorm Room Stuff", "Dorm Things");
+	populateLists("#list-names");
+}
+
 
 
 $(document).ready(function() {

@@ -174,7 +174,7 @@ test("User API for App", function() {
 	
 });
 
-test("List API for App", function() {
+test("Get/Add/Delete List API for App", function() {
 	var app = new PackPack.App("User A");
 	var expectedLists = [];
 
@@ -218,6 +218,21 @@ test("List API for App", function() {
 	deepEqual(expectedLists, app.getLists(), "Delete List works.");
 	throws(function() { app.deleteList(); }, PackPack.Error, "Must give list name.");
 	throws(function() { app.deleteList("List 100"); }, PackPack.Error, "Must give name that exists.");
+});
+
+test("Edit Lists API for App", function() {
+	var app = new PackPack.App("User A");
+	app.addList("Test List");
+	app.changeListName("Test List", "New List Name");
+	ok(app.getList("New List Name"), "Change list name updated list internally.");
+
+	throws(function() { app.changeListName("Nonexistent List", "New List Name"); }, PackPack.Error, "Must give name of list that exists.");
+	throws(function() { app.changeListName(); }, PackPack.Error, "Must give valid strings as inputs");
+
+});
+
+test("Add/Edit/Remove Item API for App", function() {
+	ok(undefined, "Not yet implemented.");
 });
 
 

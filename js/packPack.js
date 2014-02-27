@@ -149,6 +149,19 @@ module.App = function( userName ) {
 		}
 	}
 
+	this.changeListName = function( oldName, newName) {
+		if (!(typeof oldName == "string") || !(typeof newName == "string")) {
+			throw new module.Error("Please provide two valid strings as names.", "Invalid Input");
+		}
+
+		var index = getIndexOfList(oldName);
+		if (index > -1) {
+			lists[index].name = newName;
+		} else {
+			throw new module.Error("Can't edit list that doesn't exist.", "Not Found");
+		}
+	}
+
 	// bogus method for now
 	this.createStuff = function() {
 		var list = new module.List("School Supplies");
