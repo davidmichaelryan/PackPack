@@ -10,6 +10,12 @@ function init() {
 	$("#list").hide();
 	$("#grouppage").hide();
 
+	$("#app-title").click(function() {
+		// This should be working, but I'm not sure why it isn't?
+		//showPage("home");
+		goToHomePage();
+	});
+
 	$("#lists > .list-header > .plus").click( function() {
 		$('#add-list-modal').dialog({
       		//autoOpen: false,
