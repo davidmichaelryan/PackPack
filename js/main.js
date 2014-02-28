@@ -10,6 +10,7 @@ function init() {
 	$("#list").hide();
 	$("#grouppage").hide();
 	$("#groups > .list-header > h2").click( showPage("groups"));
+
 	$("#lists > .list-header > .plus").click( function() {
 		$('#add-list-modal').dialog({
       		//autoOpen: false,
@@ -40,9 +41,7 @@ function init() {
 	$("#budget > .list-header > .plus").click( function() {
 		$('#add-budget-modal').dialog();
 	});
-	$("#groups > .list-header > .plus").click( function() {
-		$('#add-group-modal').dialog();
-	});
+	$("#groups > .list-header > .plus").click( showPage("groups"));
 	$("#list > .list-header > .plus").click( function() {
 		$('#add-item-modal').dialog({
       		//autoOpen: false,
@@ -116,6 +115,16 @@ function populateListView( listName ) {
 }
 
 function populateGroups() {
+	var groupsContainer = $("#groups > .list").first();
+	// clear containers
+	groupsContainer.empty();
+
+	var groups = app.getJoinedGroups();
+	for (var i = 0; i < groups.length; i++) {
+		var html = '<li id="group-' + i + '" class="list-object"><a href="#">' + groups[i].name + '</a></li>';
+		groupsContainer.append(html);
+		groupsContainer.children().last().click( showPage("group-page", { 'name' : groups[i].name}));
+	}
 
 }
 
@@ -126,18 +135,35 @@ function populateGroupsView() {
 	myGroupsContainer.empty();
 	otherGroupsContainer.empty(); 
 
-	var myGroups = app.getJoinedGroups();
-	for (var i = 0; i < myGroups.length; i++) {
-		var html = '<li id="group-' + i + '" class="list-object"><a href="#">' + myGroups[i].name + '</a></li>';
-		myGroupsContainer.append(html);
-		myGroupsContainer.children().last().click( showPage("group", { 'name' : myGroups[i].name}));
+	var groups = app.getGroups();
+	for (var i = 0; i < groups.length; i++) {
+		var html = '<li id="group-' + i + '" class="list-object"><a href="#">' + groups[i].name + '</a><span class="group-membership ' + ((groups[i].isMember()) ? 'member">Leave' : 'notMember">Join') + '</span></li>';
+		
+		if (groups[i].isMember()) {
+			myGroupsContainer.append(html);
+			myGroupsContainer.children().last().click( showPage("group-page", { 'name' : groups[i].name}));
+			myGroupsContainer.children().last().find(".group-membership").click( leaveGroup(i));
+		} else {
+			otherGroupsContainer.append(html);
+			otherGroupsContainer.children().last().click( showPage("group-page", { 'name' : groups[i].name}));
+			otherGroupsContainer.children().last().find(".group-membership").click( joinGroup(i))
+		}
+		
 	}
 
-	var otherGroups = app.getUnJoinedGroups();
-	for (var i = 0; i < otherGroups.length; i++) {
-		var html = '<li id="group-' + i + '" class="list-object"><a href="#">' + otherGroups[i].name + '</a></li>';
-		otherGroupsContainer.append(html);
-		otherGroupsContainer.children().last().click( showPage("group", { 'name' : otherGroups[i].name}));
+}
+
+function leaveGroup( index ) {
+	return function() {
+		app.leaveGroup(index);
+		populateGroupsView();
+	}
+}
+
+function joinGroup( index ) {
+	return function() {
+		app.joinGroup(index);
+		populateGroupsView();
 	}
 }
 
@@ -176,6 +202,9 @@ function showPage( page, args ) {
 				break;
 			case "groups":
 				goToGroupsPage();
+				break;
+			case "group-page":
+				console.log(args.name);
 				break;
 			default:
 				alert("error");

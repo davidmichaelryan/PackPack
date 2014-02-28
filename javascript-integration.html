@@ -3,6 +3,19 @@
 		<link href='http://fonts.googleapis.com/css?family=Raleway:700,400,200,100' rel='stylesheet' type='text/css'>
 		<link href="jquery-ui-1.10.4/themes/base/jquery.ui.all.css" rel="stylesheet">
 		<link rel="stylesheet" href="stylesheets/base.css">
+		<style>
+			.group-membership {
+				padding: 5px;
+			}
+			.notMember {
+				color: white;
+				background-color: green;
+			}
+			.member {
+				color: white;
+				background-color: red;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="appWrapper">
@@ -22,11 +35,7 @@
 							<a href="#" class="plus">+</a>
 						</div>
 						<ul id="list-names" class="list">
-							<!--
-							<li class="list-object"><a href="#">A test list item <span>></span></a></li>
-							<li class="list-object"><a href="#">A test list item <span>></span></a></li>
-							<li class="list-object"><a href="#">A test list item <span>></span></a></li>
-							<li class="list-object" style="border:none"><a href="#">A test list item <span>></span></a></li> -->
+							
 						</ul>
 					</div>
 					<div id="budget">
@@ -41,7 +50,9 @@
 							<h2>Groups</h2>
 							<a href="#" class="plus">+</a>
 						</div>
-						<div class="place-holder"></div>
+						<ul class="list">
+							
+						</ul>
 					</div>
 				</div>
 				<div id="grouppage" class="content-wrapper">
@@ -84,9 +95,6 @@
     					<label for="name">List Name</label>
     					<input type="text" name="name" id="list-name-modal" class="text ui-widget-content ui corner-all">
   					</form>
-				</div>
-				<div id="add-group-modal">
-					<p> Add Group </p>
 				</div>
 				<div id="add-budget-modal">
 					<p> Add Budget </p>
