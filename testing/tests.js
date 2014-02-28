@@ -203,6 +203,86 @@ test("List Copy Function", function() {
 });
 
 
+
+/* ********************************************** */
+module("Group Unit Tests", {
+	setup: function() {
+		group = new PackPack.Group("Group Name");
+		expectedGroupList = new PackPack.List("Group Name List");
+		expectedMembership = false;
+	},
+	teardown: function() {
+		// clean up
+	}
+});
+test("Group Construction", function() {
+	var defaultGroup = new PackPack.Group();
+	var defaultExpectedList = new PackPack.List("New Group List");
+	ok(defaultGroup, "Constructor can take 0/undefined options.");
+	ok(defaultGroup.name, "Constructor will create default name.");
+	listsEqual(defaultGroup.list, defaultExpectedList, "Constructor correctly initialized list.");
+	deepEqual(group.isMember(), expectedMembership, "Constructor correctly initialzed membership.");
+
+	ok(group, "Constructor works as expected when given name");
+	deepEqual(group.name, "Group Name", "Constructor correctly set up given name.");
+	listsEqual(group.list, expectedGroupList, "Constructor correctly initialized list.");
+	deepEqual(group.isMember(), expectedMembership, "Constructor correctly initialzed membership.");
+});
+
+test("Group Public Parameters", function() {
+	var groupName = group.name;
+	var expectedName = group.name;
+	var groupList = group.list;
+	var notExpectedList = group.list;
+
+	groupName = "New Name";
+	groupList.name = "New Name";
+	expectedGroupList.name = "New Name"
+
+	deepEqual(group.name, expectedName, "Name is assigned by value b/c primitive type.");
+	deepEqual(group.list.name, "New Name", "List is assigned by reference.");
+
+
+	group.list.addItem();
+	expectedGroupList.addItem();
+	listsEqual(group.list, expectedGroupList, "Add item to list normally.");
+
+});
+
+test("Group Membership API", function() {
+	deepEqual(group.isMember(), false, "Default membership is correct.");
+	group.joinGroup();
+	deepEqual(group.isMember(), true, "Join group works as expected.");
+	group.joinGroup();
+	deepEqual(group.isMember(), true, "Join group has no effect is group already joined.");
+	group.leaveGroup();
+	deepEqual(group.isMember(), false, "Leave group works as expected.");
+	group.leaveGroup();
+	deepEqual(group.isMember(), false, "Leave group has no effect is group already left.");
+});
+
+test("Group Copy Function", function() {
+	var copyGroup = group.copy();
+	deepEqual(copyGroup, group, "Copy works on public parameters.");
+	deepEqual(copyGroup.isMember(), group.isMember(), "Also, works on private parameters.");
+
+	copyGroup.name = "New Name";
+	copyGroup.list.name = "New Name";
+	if (copyGroup.isMember() === group.isMember()) {
+		if (copyGroup.isMember()) {
+			copyGroup.leaveGroup();
+		} else {
+			copyGroup.joinGroup();
+		}
+	}
+	notDeepEqual(copyGroup, group, "Copy works on public parameters.");
+	notDeepEqual(copyGroup.isMember(), group.isMember(), "Also, works on private parameters.");
+
+});
+
+
+
+
 /* ********************************************** */
 module("App Unit Tests");
 test("App Constrution", function() {
@@ -356,10 +436,86 @@ test("Add/Edit/Remove Item API for App", function() {
 
 
 
+});
 
+
+module("Groups in App API Unit Testing", {
+	setup: function() {
+		app = new PackPack.App("User A");
+		expectedGroups = app.initListOfGroupsForUnitTesting();
+		expectedJoinedGroups = [];
+		expectedUnJoinedGroups = [];
+
+		expectedJoinedGroups.push(expectedGroups[2].copy());
+
+		expectedUnJoinedGroups.push(expectedGroups[0].copy());
+		expectedUnJoinedGroups.push(expectedGroups[1].copy());
+	}
+});
+test("getGroups", function() {
+	var myGroups = app.getGroups();
+	deepEqual(myGroups, expectedGroups, "Get groups returns correct data."); // doesn't check private data, but assume works b/c checked copy function
+		
+	myGroups.pop();
+	myGroups[0].name = "New Name";
+
+	deepEqual(app.getGroups(), expectedGroups, "Get groups returns copy of data, not a reference.");
 
 });
 
+test("getJoinedGroups", function() {
+	var myJoinedGroups = app.getJoinedGroups();
+	deepEqual(myJoinedGroups, expectedJoinedGroups, "Get joined groups returns correct data."); // doesn't check private data, but assume works b/c checked copy function
+
+	myJoinedGroups[0].name = "New Name";
+	myJoinedGroups[0].list.addItem("New Item");
+
+	deepEqual(app.getJoinedGroups(), expectedJoinedGroups, "Get joined groups returns copy of data, not a reference.");
+
+});
+
+test("getUnJoinedGroups", function() {
+	var myUnJoinedGroups = app.getUnJoinedGroups();
+	deepEqual(myUnJoinedGroups, expectedUnJoinedGroups, "Get unjoined groups returns correct data."); // doesn't check private data, but assume works b/c checked copy function
+
+	myUnJoinedGroups[0].name = "New Name";
+	myUnJoinedGroups[0].list.addItem("New Item");
+
+	deepEqual(app.getUnJoinedGroups(), expectedUnJoinedGroups, "Get unjoined groups returns copy of data, not a reference.");
+});
+
+test("joinGroup", function() {
+	deepEqual(app.getJoinedGroups(), expectedJoinedGroups, "Sanity check.");
+	app.joinGroup(2);
+	deepEqual(app.getJoinedGroups(), expectedJoinedGroups, "If group is already joined, nothing happens.");
+	app.joinGroup(0);
+	notDeepEqual(app.getJoinedGroups(), expectedJoinedGroups, "Join group updates internals.");
+	deepEqual(app.getJoinedGroups().length, expectedJoinedGroups.length + 1, "Join group adds one group to list of joined groups.");
+
+
+
+	// test invalid cases
+	throws(function() { app.joinGroup(); }, PackPack.Error, "Must give index to joinGroup.");
+	throws(function() { app.joinGroup(-1); }, PackPack.Error, "Must give index > 0 to joinGroup.");
+	throws(function() { app.joinGroup(100); }, PackPack.Error, "Must give index less than internal array size - 1 to joinGroup.");
+});
+
+test("leaveGroup", function() {
+	deepEqual(app.getUnJoinedGroups(), expectedUnJoinedGroups, "Sanity check.");
+	app.leaveGroup(0);
+	deepEqual(app.getUnJoinedGroups(), expectedUnJoinedGroups, "If user isn't a member, nothing happens.");
+	app.leaveGroup(2);
+	notDeepEqual(app.getUnJoinedGroups(), expectedUnJoinedGroups, "leave group updates internals.");
+	deepEqual(app.getUnJoinedGroups().length, expectedUnJoinedGroups.length + 1, "leave group adds one group to list of unjoined groups.");
+
+
+
+	// test invalid cases
+	throws(function() { app.leaveGroup(); }, PackPack.Error, "Must give index to leaveGroup.");
+	throws(function() { app.leaveGroup(-1); }, PackPack.Error, "Must give index > 0 to leaveGroup.");
+	throws(function() { app.leaveGroup(100); }, PackPack.Error, "Must give index less than internal array size - 1 to leaveGroup.");
+
+});
 
 
 

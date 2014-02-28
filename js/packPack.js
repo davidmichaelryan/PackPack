@@ -101,7 +101,44 @@ module.List = function( name ) {
 		return copyList;
 	}
 
-}
+};
+
+
+// Group class
+module.Group = function( groupName ) {
+	// Name of group
+	this.name = (groupName) ? groupName : "New Group";
+	// "Overall" list of what users in this group are briging.
+	this.list = new module.List(this.name + " List");
+	// whether or not user is a member
+	var userIsMember = false;
+
+
+	// whether the user is a member or not
+	this.isMember = function() {
+		return userIsMember;
+	}
+
+	// become member of this group
+	this.joinGroup = function() {
+		userIsMember = true;
+	}
+
+	// leave this group
+	this.leaveGroup = function() {
+		userIsMember = false;
+	}
+
+	this.copy = function() {
+		var copyGroup = new module.Group(this.name);
+		if (this.isMember()) {
+			copyGroup.joinGroup();
+		}
+		return copyGroup;
+	}
+
+};
+
 
 
 
@@ -110,7 +147,8 @@ module.App = function( userName ) {
 	// Private Data
 	var user = new module.User(userName);
 	var lists = [];
-	//var groups = [];
+	var groups = [];
+	// var way to link groups to lists
 
 
 	// Private method
@@ -126,6 +164,55 @@ module.App = function( userName ) {
 
 
 	// Public methods
+
+	/* IMPORTANT - DON'T EDIT THIS, AS UNIT TESTS DEPEND ON IT */
+	this.initListOfGroupsForUnitTesting = function() {
+		var expectedGroups = [];
+		var group = new module.Group("Elder Residential Hall");
+		group.list.addItem("Shower Caddy");
+		group.list.addItem("Pillow");
+		groups.push(group.copy());
+		expectedGroups.push(group.copy());
+
+		group = new module.Group("Soccer Team");
+		group.list.addItem("Cleats");
+		group.list.addItem("Socks");
+		groups.push(group.copy());
+		expectedGroups.push(group.copy());
+
+		group = new module.Group("California Kids");
+		group.list.addItem("Huge Winter Jacket");
+		group.list.addItem("Winter Boots");
+		group.list.addItem("Skimboard");
+		group.joinGroup();
+		groups.push(group.copy());
+		expectedGroups.push(group.copy());
+
+		return expectedGroups;
+	}
+	/* Don't edit the function above! */
+
+	/* This is okay to edit */
+	this.initListOfGroupsForProduction = function() {
+		var group = new module.Group("Elder Residential Hall");
+		group.list.addItem("Shower Caddy");
+		group.list.addItem("Pillow");
+		groups.push(group.copy());
+
+		group = new module.Group("Soccer Team");
+		group.list.addItem("Cleats");
+		group.list.addItem("Socks");
+		groups.push(group.copy());
+
+		group = new module.Group("California Kids");
+		group.list.addItem("Huge Winter Jacket");
+		group.list.addItem("Winter Boots");
+		group.list.addItem("Skimboard");
+		groups.push(group.copy());
+	}
+
+
+	
 	this.getUserName = function() {
 		return user.name;
 	}
@@ -257,14 +344,60 @@ module.App = function( userName ) {
 		lists.push(list2);
 	}
 
-	/*
+	// return by value/copy
 	this.getGroups = function() {
-		return groups;
+		var copyGroups = [];
+		for (var i = 0; i < groups.length; i++) {
+			copyGroups.push(groups[i].copy());
+		}
+		return copyGroups;
 	}
-	*/
+
+	// returns copy of groups is which user is a member
+	this.getJoinedGroups = function() {
+		var copyGroups = [];
+		for (var i = 0; i < groups.length; i++) {
+			if (groups[i].isMember()) {
+				copyGroups.push(groups[i].copy());
+			}
+		}
+		return copyGroups;
+	}
+
+	// returns copy of list of groups which use isn't a member in.
+	this.getUnJoinedGroups = function() {
+		var copyGroups = [];
+		for (var i = 0; i < groups.length; i++) {
+			if (!groups[i].isMember()) {
+				copyGroups.push(groups[i].copy());
+			}
+		}
+		return copyGroups;
+	}
+
+	// have user join group at index
+	this.joinGroup = function( index ) {
+		if ((index >= 0) && (index < groups.length)) {
+			groups[index].joinGroup();
+		} else {
+			throw new module.Error("Invalid index given to joinGroup", "Index");
+		}
+	}
+
+	// have user leave group at index
+	this.leaveGroup = function( index ) {
+		if ((index >= 0) && (index < groups.length)) {
+			groups[index].leaveGroup();
+		} else {
+			throw new module.Error("Invalid index given to leaveGroup", "Index");
+		}
+	}
+
+	// something about linking groups and lists?
+	// ....
 
 
-}
+};
 
 
 
