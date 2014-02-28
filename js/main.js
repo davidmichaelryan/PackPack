@@ -9,6 +9,7 @@ var currentView = "#homepage";
 function init() {
 	$("#list").hide();
 	$("#grouppage").hide();
+	$("#groups > .list-header > h2").click( showPage("groups"));
 	$("#lists > .list-header > .plus").click( function() {
 		$('#add-list-modal').dialog({
       		//autoOpen: false,
@@ -114,16 +115,28 @@ function populateListView( listName ) {
 	$("#item-list-modal").val(listName);
 }
 
+function populateGroups() {
+
+}
+
+function populateGroupsView() {
+
+}
 
 function goToListPage( listName ) {
 	populateListView(listName);
 	showView("#list");
-	console.log(listName);
 }
 
 function goToHomePage() {
 	populateLists();
+	populateGroups();
 	showView("#homepage");
+}
+
+function goToGroupsPage() {
+	populateGroupsView();
+	showView("#grouppage");
 }
 
 
@@ -142,6 +155,9 @@ function showPage( page, args ) {
 				break;
 			case "home":
 				goToHomePage();
+				break;
+			case "groups":
+				goToGroupsPage();
 				break;
 			default:
 				alert("error");

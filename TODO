@@ -1,0 +1,17 @@
+TODO
+Backend (Caleb)
+- Add Groups class to backend
+- Add API for creating/joining/deleting groups
+- Wishlist:
+	- Search functionality
+
+Frontend
+- Add options to menu (really cool slide effect though!)
+- Figure out css to make bottom menu show up, not sure why not working
+- Figure out how to implement item add inline - couldn't get right callbacks to submit data to backend
+- Figure out look of groups page (and don't use ids that are already in use!)
+- Figure out look of item page
+- JS:
+	- Delete List
+	- Delete item
+
