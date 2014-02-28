@@ -1,5 +1,24 @@
 /* Unit Tests for Pack Pack library */
 
+
+/* ********************************************** */
+function itemsEqual( itemOne, itemTwo, message ) {
+	var str = (message) ? message : "";
+	deepEqual(itemOne, itemTwo, str + ": public parameters equal.");
+	deepEqual(itemOne.getStatus(), itemTwo.getStatus(), str + ": status equal.");
+}
+
+function listsEqual( listOne, listTwo, message ) {
+	var str = (message) ? message : "";
+	deepEqual(listOne, listTwo, str + ": public parameters equal.");
+	deepEqual(listOne.getItems(), listTwo.getItems(), str + ": items equal.");
+}
+
+
+/* ********************************************** */
+
+
+
 /* ********************************************** */
 module("User Unit Tests");
 test("User Construction", function() {
@@ -108,7 +127,7 @@ test("List Item API", function() {
 	var list = new PackPack.List("MyList");
 	var expectedItems = [];
 
-	deepEqual([], list.getItems(), "List starts out empty.");
+	deepEqual(list.getItems(), [], "List starts out empty.");
 
 	// Add three items
 	list.addItem();
@@ -119,17 +138,47 @@ test("List Item API", function() {
 	expectedItems.push(new PackPack.Item("Second Name", "Description"));
 
 	var myItems = list.getItems();
-	deepEqual(expectedItems, myItems, "Get items returns correct array.");
+	deepEqual(myItems, expectedItems, "Get items returns correct array.");
 
 	myItems[myItems.length-1].name = "Changed Name";
 
-	notDeepEqual(expectedItems, myItems, "getItems doesn't return reference to internal data.");
+	notDeepEqual(myItems, expectedItems, "getItems doesn't return reference to internal data.");
+
+
+	// getItem
+	var oneItem = list.getItem(0);
+	deepEqual(oneItem, expectedItems[0], "Get item returns correct item.");
+	oneItem.name = "New Name";
+	deepEqual(list.getItem(0), expectedItems[0], "Get item returns by value.");
+	throws(function() { list.getItem(); }, PackPack.Error, "Must give index to getItem.");
+	throws(function() { list.getItem(-1); }, PackPack.Error, "Index must be greater than 0.");
+	throws(function() { list.getItem(100); }, PackPack.Error, "Index must not be greater than length of interal list - 1");
+
+
+
+	// editItem
+	oneItem = list.editItem(1);
+	deepEqual(oneItem, expectedItems[1], "Edit item returns correct item.");
+
+	oneItem.name = "New Name";
+	expectedItems[1].name = "New Name";
+	oneItem.desc = "foobar";
+	expectedItems[1].desc = "foobar";
+	oneItem.setStatus("Packed");
+	expectedItems[1].setStatus("Packed");
+	deepEqual(list.getItem(1), expectedItems[1], "Edit item returns by reference to allow editing");
+
+	throws(function() { list.editItem(); }, PackPack.Error, "Must give index to editItem.");
+	throws(function() { list.editItem(-1); }, PackPack.Error, "Index must be greater than 0.");
+	throws(function() { list.editItem(100); }, PackPack.Error, "Index must not be greater than length of interal list - 1");
+
+
 
 	// test remove item
 	list.removeItem(myItems.length-1);
 	expectedItems.pop();
 
-	deepEqual(expectedItems, list.getItems(), "Remove Items removes correct item.");
+	deepEqual(list.getItems(), expectedItems, "Remove Items removes correct item.");
 
 	// test remove item with invalid inputs
 	throws(function() { list.removeItem(); }, PackPack.Error, "No index given is error.");
@@ -232,7 +281,81 @@ test("Edit Lists API for App", function() {
 });
 
 test("Add/Edit/Remove Item API for App", function() {
-	ok(undefined, "Not yet implemented.");
+	var app = new PackPack.App("User A");
+	app.addList("Test List");
+	var expectedList = new PackPack.List("Test List");
+
+	// add
+	app.addItemToList("Name", "Description", "Test List");
+	expectedList.addItem("Name", "Description");
+	deepEqual(app.getList("Test List").getItems(), expectedList.getItems(), "Add item correctly adds an item");
+
+	app.addItemToList(undefined, undefined, "Test List");
+	expectedList.addItem(undefined, undefined);
+	deepEqual(app.getList("Test List").getItems(), expectedList.getItems(), "Add item to list doesn't require name or description");
+
+
+	throws(function() { app.addItemToList("Name", "Description", "Invalid List");}, PackPack.Error, "Must give valid list name to add item to list.");
+	throws(function() { app.addItemToList("Name", "Description"); }, PackPack.Error, "Must provide list name.");
+
+
+
+	// get
+	var item = app.getItemFromList(0, "Test List");
+	var expectedItem = expectedList.getItem(0);
+	itemsEqual(item, expectedItem, "getItemFromList");
+	item.name = "Changed Name";
+	item.desc = "Changed description";
+	item.setStatus("Packed");
+	itemsEqual(app.getItemFromList(0, "Test List"), expectedItem, "getItemFromList returns a copy");
+
+	throws(function() { app.getItemFromList(-1, "Test List"); }, PackPack.Error, "getItemFromList must be given index > 0");
+	throws(function() { app.getItemFromList(100, "Test List"); }, PackPack.Error, "getItemFromList must be given index < list size - 1");
+	throws(function() { app.getItemFromList(0, "Invalid List"); }, PackPack.Error, "getItemFromList must be given valid list name");
+	throws(function() { app.getItemFromList(0, undefined); }, PackPack.Error, "getItemFromList must be given a list name");
+
+
+	deepEqual(app.getList("Test List").getItems(), expectedList.getItems(), "sanity check");
+
+	console.log(app.getList("Test List").getItems());
+	console.log(expectedList.getItems());
+
+	// edit
+	item = app.editItemFromList(1, "Test List");
+	expectedItem = expectedList.editItem(1);
+	itemsEqual(item, expectedItem, "editItemFromList");
+	item.name = "Changed Name";
+	expectedItem.name = "Changed Name";
+	item.desc = "Changed description";
+	expectedItem.desc = "Changed description";
+	item.setStatus("Packed");
+	expectedItem.setStatus("Packed");
+	itemsEqual(app.getItemFromList(1, "Test List"), expectedItem, "getItemFromList returns by reference to allow editing.");
+
+	throws(function() { app.editItemFromList(-1, "Test List"); }, PackPack.Error, "editItemFromList must be given index > 0");
+	throws(function() { app.editItemFromList(100, "Test List"); }, PackPack.Error, "editItemFromList must be given index < list size - 1");
+	throws(function() { app.editItemFromList(1, "Invalid List"); }, PackPack.Error, "editItemFromList must be given valid list name");
+	throws(function() { app.editItemFromList(1, undefined); }, PackPack.Error, "editItemFromList must be given a list name");
+
+
+
+	// remove
+	app.removeItemFromList(0, "Test List");
+	expectedList.removeItem(0);
+	listsEqual(app.getList("Test List"), expectedList, "removeItemFromList");
+
+	app.addItemToList("MyName", "", "Test List"); // make sure list has enough items for calls below
+	app.addItemToList("MyName", "", "Test List");
+
+	throws(function() { app.removeItemFromList(-1, "Test List"); }, PackPack.Error, "removeItemFromList must be given index > 0");
+	throws(function() { app.removeItemFromList(100, "Test List"); }, PackPack.Error, "removeItemFromList must be given index < list size - 1");
+	throws(function() { app.removeItemFromList(0, "Invalid List"); }, PackPack.Error, "removeItemFromList must be given valid list name");
+	throws(function() { app.removeItemFromList(0, undefined); }, PackPack.Error, "removeItemFromList must be given a list name");
+
+
+
+
+
 });
 
 

@@ -63,6 +63,24 @@ module.List = function( name ) {
 		return items;
 	}
 
+	// get one item, return by value
+	this.getItem = function( index ) {
+		if ((index >= 0) && (index < listItems.length)) {
+			return listItems[index].copy();	// return a copy
+		} else {
+			throw new module.Error("Invalid index given to getItem", "Index");
+		}
+	}
+
+	// get reference to an item to allow for editing
+	this.editItem = function( index ) {
+		if ((index >= 0) && (index < listItems.length)) {
+			return listItems[index];	// return by reference
+		} else {
+			throw new module.Error("Invalid index given to getItem", "Index");
+		}
+	}
+
 	this.addItem = function( name, description ) {
 		listItems.push(new module.Item(name, description));
 	}
@@ -161,6 +179,65 @@ module.App = function( userName ) {
 			throw new module.Error("Can't edit list that doesn't exist.", "Not Found");
 		}
 	}
+
+	// return by copy/value
+	this.getItemFromList = function( index, listName ) {
+		if (typeof listName != "string") {
+			throw new module.Error("Must provide valid list name.", "Invalid Input");
+		}
+
+		var listIndex = getIndexOfList(listName);
+		if (listIndex !== -1) {
+			return lists[listIndex].getItem(index);
+		} else {
+			throw new module.Error("Must provide valid list name.", "Not Found");
+		}
+	}
+
+
+	// return by reference
+	this.editItemFromList = function( index, listName ) {
+		if (typeof listName != "string") {
+			throw new module.Error("Must provide valid list name.", "Invalid Input");
+		}
+
+		var listIndex = getIndexOfList(listName);
+		if (listIndex !== -1) {
+			return lists[listIndex].editItem(index);
+		} else {
+			throw new module.Error("Must provide valid list name.", "Not Found");
+		}
+	}
+
+	// add
+	this.addItemToList = function( name, description, listName ) {
+		if (typeof listName != "string") {
+			throw new module.Error("Must provide valid list name.", "Invalid Input");
+		}
+
+		var index = getIndexOfList(listName);
+		if (index !== -1) {
+			lists[index].addItem(name, description);
+		} else {
+			throw new module.Error("Must provide valid list name.", "Not Found");
+		}
+	}
+
+	// delete
+	this.removeItemFromList = function( index, listName ) {
+		if (typeof listName != "string") {
+			throw new module.Error("Must provide valid list name.", "Invalid Input");
+		}
+
+		var listIndex = getIndexOfList(listName);
+		if (listIndex !== -1) {
+			lists[listIndex].removeItem(index);
+		} else {
+			throw new module.Error("Must provide valid list name.", "Not Found");
+		}
+	}
+
+
 
 	// bogus method for now
 	this.createStuff = function() {
