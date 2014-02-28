@@ -10,12 +10,12 @@ function init() {
 	$("#list").hide();
 	$("#grouppage").hide();
 	$("#groups > .list-header > h2").click( showPage("groups"));
+	$('#add-budget-modal').hide();
+	$('#add-list-modal').hide();
+	$('#add-group-modal').hide();
+	$('#add-item-modal').hide();
 
-	$("#app-title").click(function() {
-		// This should be working, but I'm not sure why it isn't?
-		//showPage("home");
-		goToHomePage();
-	});
+	$("#app-title").click(showPage("home"));
 
 	$("#lists > .list-header > .plus").click( function() {
 		$('#add-list-modal').dialog({

@@ -134,12 +134,17 @@ body {
   border-top: none;
 }
 
-/* line 134, ../sass/base.scss */
+/* line 135, ../sass/base.scss */
 #lists .list-header {
   border-top: none;
 }
 
-/* line 138, ../sass/base.scss */
+/* line 141, ../sass/base.scss */
+#list .list-object:last-child, #list #menu .menu-item:last-child, #menu #list .menu-item:last-child {
+  margin-bottom: 30px;
+}
+
+/* line 146, ../sass/base.scss */
 .list {
   margin: 5px 0 30px 0;
   padding: 0;
@@ -148,14 +153,14 @@ body {
   display: block;
 }
 
-/* line 146, ../sass/base.scss */
+/* line 154, ../sass/base.scss */
 .list-object, #menu .menu-item {
   border-bottom: 1px dashed #D3D3D3;
   padding: 10px;
   overflow: hidden;
   display: block;
 }
-/* line 151, ../sass/base.scss */
+/* line 159, ../sass/base.scss */
 .list-object a, #menu .menu-item a {
   text-align: left;
   display: block;
@@ -163,13 +168,13 @@ body {
   text-decoration: none;
   font-size: 1.1em;
 }
-/* line 158, ../sass/base.scss */
+/* line 166, ../sass/base.scss */
 .list-object span, #menu .menu-item span {
   float: right;
   display: inline-block;
 }
 
-/* line 164, ../sass/base.scss */
+/* line 172, ../sass/base.scss */
 .list-controls {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -182,14 +187,14 @@ body {
   padding: 15px;
   background-color: lightgrey;
 }
-/* line 173, ../sass/base.scss */
+/* line 181, ../sass/base.scss */
 .list-controls a {
   text-transform: uppercase;
   text-decoration: none;
   color: black;
 }
 
-/* line 180, ../sass/base.scss */
+/* line 188, ../sass/base.scss */
 .button, .group-membership {
   display: block;
   padding: 10px;
@@ -205,23 +210,23 @@ body {
   border-radius: 5px;
 }
 
-/* line 191, ../sass/base.scss */
+/* line 199, ../sass/base.scss */
 .group-membership {
   margin-top: -25px;
   margin-bottom: -5px;
 }
-/* line 195, ../sass/base.scss */
+/* line 203, ../sass/base.scss */
 .group-membership.notMember {
   color: white;
   background-color: green;
 }
-/* line 199, ../sass/base.scss */
+/* line 207, ../sass/base.scss */
 .group-membership.member {
   color: white;
   background-color: red;
 }
 
-/* line 205, ../sass/base.scss */
+/* line 213, ../sass/base.scss */
 #menu {
   position: absolute;
   width: 400px;
@@ -232,16 +237,16 @@ body {
   background-color: #ECF0F1;
   padding-top: 80px;
 }
-/* line 215, ../sass/base.scss */
+/* line 223, ../sass/base.scss */
 #menu.menu-push {
   left: 0px;
 }
-/* line 219, ../sass/base.scss */
+/* line 227, ../sass/base.scss */
 #menu .menu-item {
   padding: 20px;
 }
 
-/* line 225, ../sass/base.scss */
+/* line 233, ../sass/base.scss */
 #menu, #main-screen {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;

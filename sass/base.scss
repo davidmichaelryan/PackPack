@@ -131,8 +131,16 @@ body{
 	}
 }
 
-#lists .list-header{
-	border-top:none;
+#lists {
+	.list-header {
+		border-top: none;
+	}
+}
+
+#list {
+	.list-object:last-child {
+		margin-bottom: 30px;
+	}
 }
 
 .list {
