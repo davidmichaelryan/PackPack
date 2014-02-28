@@ -1,6 +1,8 @@
 @import "compass/css3";
 
+// Standard heights
 $menu-width: 400px;
+$header-height: 80px;
 
 // Colors
 $black: #000;
@@ -54,7 +56,7 @@ body{
 }
 
 #header{
-	height:80px;
+	height: $header-height;
 	background-color: $light-blue;
 	overflow:hidden;
 	position:relative;
@@ -74,7 +76,7 @@ body{
 	h1{	
 		width:auto;
 		color:white;
-		line-height:80px;
+		line-height: $header-height;
 		text-align:center;
 		font-weight: 400;
 	}
@@ -113,6 +115,7 @@ body{
 		display:inline-block;
 		line-height: 60px;
 		float:left;
+		cursor: pointer;
 	}
 	a{
 		display:inline-block;
@@ -174,6 +177,31 @@ body{
 	}
 }
 
+.button {
+	display: block;
+	padding: 10px;
+	cursor: pointer;
+	border: 1px solid $light-grey;
+	font-size: 12px;
+	font-weight: 200;
+	text-align: center;
+	@include border-radius(5px);
+}
+
+.group-membership {
+	@extend .button;
+	margin-top: -25px;
+	margin-bottom: -5px;
+	&.notMember {
+		color: white;
+		background-color: green;
+	}
+	&.member {
+		color: white;
+		background-color: red;
+	}
+}
+
 #menu {
 	position: absolute;
 	width: $menu-width;
@@ -182,10 +210,16 @@ body{
 	left: -1 * $menu-width;
 	z-index: 1000;
 	background-color: #ECF0F1;
+	padding-top: $header-height;
 
 	&.menu-push {
 		left: 0px;
 	}
+
+	.menu-item {
+		@extend .list-object;
+		padding: 20px;
+   }
 }
 
 #menu, #main-screen {

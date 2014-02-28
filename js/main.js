@@ -11,6 +11,12 @@ function init() {
 	$("#grouppage").hide();
 	$("#groups > .list-header > h2").click( showPage("groups"));
 
+	$("#app-title").click(function() {
+		// This should be working, but I'm not sure why it isn't?
+		//showPage("home");
+		goToHomePage();
+	});
+
 	$("#lists > .list-header > .plus").click( function() {
 		$('#add-list-modal').dialog({
       		//autoOpen: false,

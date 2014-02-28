@@ -1,17 +1,23 @@
 <html>
 	<head>
 		<link href='http://fonts.googleapis.com/css?family=Raleway:700,400,200,100' rel='stylesheet' type='text/css'>
+		<link href="jquery-ui-1.10.4/themes/base/jquery.ui.all.css" rel="stylesheet">
 		<link rel="stylesheet" href="stylesheets/base.css">
 	</head>
 	<body>
 		<div id="appWrapper">
 			<div id="menu">
-				<h1>Menu</h1>
+				<ul class="list">
+				       <li class="menu-item"><a href="#" onClick="goToHomePage();">Home</a></li>
+				       <li class="menu-item"><a href="#">Lists</a></li>
+				       <li class="menu-item"><a href="#">Budget</a></li>
+				       <li class="menu-item" style="border:none"><a href="#" onClick="goToGroupsPage();">Groups</a></li>
+				</ul>
 			</div>
 			<div id="main-screen">
 				<div id="header">
 					<a id="menu-button" href="#"></a>
-					<h1>Pack Pack</h1>
+					<h1 id="app-title" onClick="goToHomePage();">Pack Pack</h1>
 					<a id="search" href="#"><img src="icons/magnify.png"></a>
 				</div>
 				<div id="homepage" class="content-wrapper">
@@ -20,12 +26,15 @@
 							<h2>Lists</h2>
 							<a href="#" class="plus">+</a>
 						</div>
-						<ul class="list">
+						<ul id="list-names" class="list">
+							
+						</ul>
+						<!--<ul class="list">
 							<li class="list-object"><a href="#">A test list item <span>></span></a></li>
 							<li class="list-object"><a href="#">A test list item <span>></span></a></li>
 							<li class="list-object"><a href="#">A test list item <span>></span></a></li>
 							<li class="list-object" style="border:none"><a href="#">A test list item <span>></span></a></li>
-						</ul>
+						</ul>-->
 					</div>
 					<div id="budget">
 						<div class="list-header">
@@ -39,16 +48,28 @@
 							<h2>Groups</h2>
 							<a href="#" class="plus">+</a>
 						</div>
-						<div class="place-holder"></div>
+						<ul class="list">
+							
+						</ul>
 					</div>
 				</div>
 				<div id="grouppage" class="content-wrapper">
-					<div id="groups">
-						<a>Search Groups</a>
-						<div class="list-header">
-							<h2>My Groups</h2>
-						</div>
-						<div class="place-holder"></div>
+					<a>Search Groups</a>
+					<div class="list-header list-view">
+						<h2>My Groups</h2>
+					</div>
+					<ul class="list">
+						
+					</ul>
+					<div class="list-header list-view">
+						<h2>Other Groups</h2>
+					</div>
+					<ul class="list">
+						
+					</ul>
+					<div class="list-controls">
+						<a class="left" href="#">Move</a>
+						<a class="right" href="#">Delete</a>
 					</div>
 				</div>
 				<div id="list" class="content-wrapper">
@@ -57,21 +78,39 @@
 						<a href="#" class="plus">+</a>
 					</div>
 					<ul class="list">
-						<li class="list-object"><a href="#">Pencil case</a></li>
-						<li class="list-object"><a href="#">Eraser</a></li>
-						<li class="list-object"><a href="#">Donuts</a></li>
-						<li class="list-object"><a href="#">Donut Holes</a></li>
+
 					</ul>
 					<div class="list-controls">
 						<a class="left" href="#">Move</a>
 						<a class="right" href="#">Delete</a>
 					</div>
 				</div>
+				<div id="add-list-modal">
+					<form>
+    					<label for="name">List Name</label>
+    					<input type="text" name="name" id="list-name-modal" class="text ui-widget-content ui corner-all">
+  					</form>
+				</div>
+				<div id="add-budget-modal">
+					<p> Add Budget </p>
+					<p> Feature coming soon. </p>
+				</div>
+				<div id="add-item-modal">
+					<form>
+    					<label for="name">Item Name</label>
+    					<input type="text" name="name" id="item-name-modal" class="text ui-widget-content ui corner-all"> <br />
+    					<label for="desc">Item Description</label>
+    					<input type="text" name="desc" id="item-desc-modal" class="text ui-widget-content ui corner-all">
+    					<input type="hidden" name="list" id="item-list-modal" value="">
+  					</form>
+				</div>
 			</div>
 		</div>
 	</body>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="jquery-ui-1.10.4/jquery-1.10.2.js"></script>
+	<script src="jquery-ui-1.10.4/ui/jquery-ui.js"></script>
 	<script src="js/menu.js"></script>
+	<script src="js/PackPack.js"></script>
+	<script src="js/main.js"></script>
 </html>
