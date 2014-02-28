@@ -9,7 +9,6 @@ var currentView = "#homepage";
 function init() {
 	$("#list").hide();
 	$("#grouppage").hide();
-	$("#groups > .list-header > h2").click( showPage("groups"));
 
 	$("#lists > .list-header > .plus").click( function() {
 		$('#add-list-modal').dialog({
@@ -112,6 +111,11 @@ function populateListView( listName ) {
 
 	// update hidden field on add item modal
 	$("#item-list-modal").val(listName);
+
+	// add help text if no items in list currently
+	if (items.length === 0) {
+		container.append("<p>No items are currently in this list. <br /> Please tap the plus sign to add an item.</p>");
+	}
 }
 
 function populateGroups() {
