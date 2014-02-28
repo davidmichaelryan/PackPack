@@ -118,6 +118,11 @@ function populateListView( listName ) {
 
 	// update hidden field on add item modal
 	$("#item-list-modal").val(listName);
+
+	// add help text if no items in list currently
+	if (items.length === 0) {
+		container.append("<p>No items are currently in this list. <br /> Please tap the plus sign to add an item.</p>");
+	}
 }
 
 function populateGroups() {
