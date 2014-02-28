@@ -246,7 +246,11 @@ module.App = function( userName ) {
 		list.addItem("Pencil");
 		lists.push(list);
 
+		var numItems = 20;
 		var list2 = new module.List("Dorm Room Stuff");
+		for (var i = 0; i < numItems; i++) {
+			list2.addItem("Item " + i);
+		}
 		lists.push(list2);
 	}
 

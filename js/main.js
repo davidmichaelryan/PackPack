@@ -9,13 +9,30 @@ var currentView = "#homepage";
 function init() {
 	$("#list").hide();
 	$("#grouppage").hide();
+	$("#lists > .list-header > .plus").click( function() {
+		var addListModalContent = $('#add-list-modal');
+		$('#modal').html(addListModalContent);
+		$('#modal').dialog();
+	});
+	$("#budget > .list-header > .plus").click( function() {
+		var addBudgetModalContent = $('#add-budget-modal');
+		$('#modal').html(addBudgetModalContent);
+		$('#modal').dialog();
+	});
+	$("#groups > .list-header > .plus").click( function() {
+		var addGroupModalContent = $('#add-group-modal');
+		$('#modal').html(addGroupModalContent);
+		$('#modal').dialog();
+	});
 }
 
 
 function showView( pageId ) {
-	$(pageId).toggle();			// show new page
-	$(currentView).toggle();	// hide current page
-	currentView = pageId;		// update current page
+	if (pageId !== currentView) {
+		$(pageId).show();			// show new page
+		$(currentView).hide();	// hide current page
+		currentView = pageId;		// update current page
+	}	
 }
 
 
@@ -29,17 +46,32 @@ function populateLists( containerId ) {
 		$(containerId).append(html);
 		$(containerId).children().last().click( showPage("list", { 'name' : lists[i].name}));
 	}
-
-	// attach click handlers
-	//$(".list-object").click(showPage("list", { name: })
 	
 } 
 
 
+function populateListView( listName ) {
+	$("#list > .list-header > h2").html( listName );
+	var container = $("#list > .list");
+	container.empty(); // clear container
+	var items = app.getList(listName).getItems();
+	for (var i = 0; i < items.length; i++) {
+		var html = '<li id="item-' + i + '" class="list-object"><a href="#">' + items[i].name + '</a><span class="item-status">' + items[i].getStatus() + '</span></li>';
+		container.append(html);
+		container.children().last().click( showPage("item", { 'name' : items[i].name}));
+	}
+}
+
+
 function goToListPage( listName ) {
-	//populateListView(listName);
+	populateListView(listName);
 	showView("#list");
 	console.log(listName);
+}
+
+function goToHomePage() {
+	populateLists("#list-names");
+	showView("#homepage");
 }
 
 
@@ -52,6 +84,12 @@ function showPage( page, args ) {
 		switch (page) {
 			case "list":
 				goToListPage(args.name);
+				break;
+			case "item":
+				console.log(args.name);
+				break;
+			case "home":
+				goToHomePage();
 				break;
 			default:
 				alert("error");
@@ -66,16 +104,9 @@ function showPage( page, args ) {
 
 
 
-
-
-
-
-
-
 $(document).ready(function() {
 	init();
 	app.createStuff();
-	populateLists("#list-names");
-
+	goToHomePage();
 
 });
