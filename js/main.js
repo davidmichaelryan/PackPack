@@ -10,19 +10,68 @@ function init() {
 	$("#list").hide();
 	$("#grouppage").hide();
 	$("#lists > .list-header > .plus").click( function() {
-		var addListModalContent = $('#add-list-modal');
-		$('#modal').html(addListModalContent);
-		$('#modal').dialog();
+		$('#add-list-modal').dialog({
+      		//autoOpen: false,
+      		//height: 300,
+      		//width: 350,
+      		modal: true,
+      		buttons: {
+        		"Create list": function() {
+        			var name = $("#list-name-modal").val();
+        			try {
+        				app.addList(name);
+        				populateLists();
+        				$( this ).dialog( "close" );
+        			} catch (err) {
+        				console.log(err.message);
+        			}
+          			
+        		},
+        		Cancel: function() {
+          			$( this ).dialog( "close" );
+        		}
+      		},
+      		close: function() {
+        		$("#list-name-modal").val("");
+      		}
+    	});
 	});
 	$("#budget > .list-header > .plus").click( function() {
-		var addBudgetModalContent = $('#add-budget-modal');
-		$('#modal').html(addBudgetModalContent);
-		$('#modal').dialog();
+		$('#add-budget-modal').dialog();
 	});
 	$("#groups > .list-header > .plus").click( function() {
-		var addGroupModalContent = $('#add-group-modal');
-		$('#modal').html(addGroupModalContent);
-		$('#modal').dialog();
+		$('#add-group-modal').dialog();
+	});
+	$("#list > .list-header > .plus").click( function() {
+		$('#add-item-modal').dialog({
+      		//autoOpen: false,
+      		//height: 300,
+      		//width: 350,
+      		modal: true,
+      		buttons: {
+        		"Create item": function() {
+        			var name = $("#item-name-modal").val();
+        			var desc = $("#item-desc-modal").val();
+        			var listName = $("#item-list-modal").val();
+        			console.log(listName);
+        			try {
+        				app.addItemToList(name, desc, listName);
+        				populateListView(listName);
+        				$( this ).dialog( "close" );
+        			} catch (err) {
+        				console.log(err.message);
+        			}
+          			
+        		},
+        		Cancel: function() {
+          			$( this ).dialog( "close" );
+        		}
+      		},
+      		close: function() {
+        		$("#item-name-modal").val("");
+        		$("#item-desc-modal").val("");
+      		}
+    	});
 	});
 }
 
@@ -37,14 +86,14 @@ function showView( pageId ) {
 
 
 
-function populateLists( containerId ) {
-	var container = $(containerId);
+function populateLists() {
+	var container = $("#list-names");
 	container.empty(); // clear container
 	var lists = app.getLists();
 	for (var i = 0; i < lists.length; i++) {
 		var html = '<li id="list-' + i + '" class="list-object" '+ ((i == lists.length-1) ? 'style="border:none"' : '') + '><a href="#" >' + lists[i].name + '<span>></span></a></li>';
-		$(containerId).append(html);
-		$(containerId).children().last().click( showPage("list", { 'name' : lists[i].name}));
+		container.append(html);
+		container.children().last().click( showPage("list", { 'name' : lists[i].name}));
 	}
 	
 } 
@@ -60,6 +109,9 @@ function populateListView( listName ) {
 		container.append(html);
 		container.children().last().click( showPage("item", { 'name' : items[i].name}));
 	}
+
+	// update hidden field on add item modal
+	$("#item-list-modal").val(listName);
 }
 
 
@@ -70,7 +122,7 @@ function goToListPage( listName ) {
 }
 
 function goToHomePage() {
-	populateLists("#list-names");
+	populateLists();
 	showView("#homepage");
 }
 
@@ -108,5 +160,6 @@ $(document).ready(function() {
 	init();
 	app.createStuff();
 	goToHomePage();
+
 
 });

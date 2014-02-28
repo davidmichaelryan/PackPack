@@ -232,8 +232,8 @@ test("Get/Add/Delete List API for App", function() {
 	app.addList("List 1");
 	var expectedList = new PackPack.List("List 1");
 	expectedLists.push(expectedList);
-	app.addList();										// allow default lists to be added
-	expectedLists.push(new PackPack.List());
+	app.addList("List");
+	expectedLists.push(new PackPack.List("List"));
 	app.addList("List 2");
 	expectedLists.push(new PackPack.List("List 2"));
 
@@ -242,6 +242,8 @@ test("Get/Add/Delete List API for App", function() {
 	deepEqual(expectedLists, myLists, "Add list works and adds list to app.");
 
 	throws(function() { app.addList("List 1");}, PackPack.Error, "Can't add list with same name as another list.");
+	throws(function() { app.addList();}, PackPack.Error, "Can't add more than 1 default list.");
+
 
 	myLists[myLists.length-1].name = "List Name Changed";
 	myLists[myLists.length-1].addItem("Name", "Description");

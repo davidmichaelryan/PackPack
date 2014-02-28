@@ -69,11 +69,11 @@
 						<a class="right" href="#">Delete</a>
 					</div>
 				</div>
-				<div id="modal">
-					<p>Hello World</p>
-				</div>
 				<div id="add-list-modal">
-					<p> Add List </p>
+					<form>
+    					<label for="name">List Name</label>
+    					<input type="text" name="name" id="list-name-modal" class="text ui-widget-content ui corner-all">
+  					</form>
 				</div>
 				<div id="add-group-modal">
 					<p> Add Group </p>
@@ -81,6 +81,15 @@
 				<div id="add-budget-modal">
 					<p> Add Budget </p>
 					<p> Feature coming soon. </p>
+				</div>
+				<div id="add-item-modal">
+					<form>
+    					<label for="name">Item Name</label>
+    					<input type="text" name="name" id="item-name-modal" class="text ui-widget-content ui corner-all"> <br />
+    					<label for="desc">Item Description</label>
+    					<input type="text" name="desc" id="item-desc-modal" class="text ui-widget-content ui corner-all">
+    					<input type="hidden" name="list" id="item-list-modal" value="">
+  					</form>
 				</div>
 			</div>
 		</div>

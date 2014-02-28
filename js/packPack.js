@@ -149,6 +149,9 @@ module.App = function( userName ) {
 	}
 
 	this.addList = function( name ) {
+		if (!(name)) {
+			throw new module.Error("Must provide a list name");
+		}
 		if (getIndexOfList(name) == -1) {
 			var myList = new module.List(name);
 			lists.push(myList);
