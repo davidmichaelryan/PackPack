@@ -208,6 +208,7 @@ module.App = function( userName ) {
 		group.list.addItem("Huge Winter Jacket");
 		group.list.addItem("Winter Boots");
 		group.list.addItem("Skimboard");
+		group.joinGroup();
 		groups.push(group.copy());
 	}
 

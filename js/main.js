@@ -120,7 +120,25 @@ function populateGroups() {
 }
 
 function populateGroupsView() {
+	var myGroupsContainer = $("#grouppage > .list").first();
+	var otherGroupsContainer = $("#grouppage > .list").last();
+	// clear containers
+	myGroupsContainer.empty();
+	otherGroupsContainer.empty(); 
 
+	var myGroups = app.getJoinedGroups();
+	for (var i = 0; i < myGroups.length; i++) {
+		var html = '<li id="group-' + i + '" class="list-object"><a href="#">' + myGroups[i].name + '</a></li>';
+		myGroupsContainer.append(html);
+		myGroupsContainer.children().last().click( showPage("group", { 'name' : myGroups[i].name}));
+	}
+
+	var otherGroups = app.getUnJoinedGroups();
+	for (var i = 0; i < otherGroups.length; i++) {
+		var html = '<li id="group-' + i + '" class="list-object"><a href="#">' + otherGroups[i].name + '</a></li>';
+		otherGroupsContainer.append(html);
+		otherGroupsContainer.children().last().click( showPage("group", { 'name' : otherGroups[i].name}));
+	}
 }
 
 function goToListPage( listName ) {
@@ -175,6 +193,7 @@ function showPage( page, args ) {
 $(document).ready(function() {
 	init();
 	app.createStuff();
+	app.initListOfGroupsForProduction();
 	goToHomePage();
 
 
