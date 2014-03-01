@@ -151,7 +151,7 @@ function populateGroups() {
 
 	var groups = app.getJoinedGroups();
 	for (var i = 0; i < groups.length; i++) {
-		var html = '<li id="group-' + i + '" class="list-object"><a href="#">' + groups[i].name + '</a></li>';
+		var html = '<li id="group-' + i + '" class="list-object"' + ((i == groups.length-1) ? 'style="border:none"' : '') + '><a href="#">' + groups[i].name + '<span>></span></a></li>';
 		groupsContainer.append(html);
 		groupsContainer.children().last().click( showPage("group-page", { 'name' : groups[i].name}));
 	}

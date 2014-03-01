@@ -200,17 +200,49 @@ module.App = function( userName ) {
 		group.list.addItem("Pillow");
 		groups.push(group.copy());
 
-		group = new module.Group("Soccer Team");
+		group = new module.Group("Mens Varsity Soccer");
 		group.list.addItem("Cleats");
 		group.list.addItem("Socks");
 		groups.push(group.copy());
 
-		group = new module.Group("California Kids");
+		group = new module.Group("Womens Varsity Soccer");
 		group.list.addItem("Huge Winter Jacket");
 		group.list.addItem("Winter Boots");
 		group.list.addItem("Skimboard");
+		groups.push(group.copy());
+
+		group = new module.Group("Varsity Football");
+		groups.push(group.copy());
+
+		group = new module.Group("Club Lacrosse");
+		groups.push(group.copy());
+
+		group = new module.Group("Bobb-McCulloch Residential Hall");
+		groups.push(group.copy());
+
+		group = new module.Group("BLAST");
+		group.list.addItem("Tap Shoes");
+		group.list.addItem("Tights");
+		group.list.addItem("Tux");
+		groups.push(group.copy());
+
+		group = new module.Group("Allison Residential Hall");
+		group.list.addItem("Shower Caddy");
+		group.list.addItem("Sheets");
+		group.list.addItem("Backpack");
+		groups.push(group.copy());
+
+		group = new module.Group("Willard Residential Hall");
+		groups.push(group.copy());
+
+		group = new module.Group("Jones Residential Hall");
+		groups.push(group.copy());
+
+		group = new module.Group("Northwestern Class of 2018");
 		group.joinGroup();
 		groups.push(group.copy());
+
+
 	}
 
 
@@ -333,17 +365,15 @@ module.App = function( userName ) {
 
 	// bogus method for now
 	this.createStuff = function() {
-		var list = new module.List("School Supplies");
-		list.addItem("Ruler", "A ruler");
-		var item = list.editItem(0);
-		item.setStatus("packed");
-		list.addItem("Pencil");
+		var list = new module.List("Dorm Room Supplies");
+		list.addItem("Pillow", "A pillow");
+		list.addItem("Sheets");
 		lists.push(list);
 
 		var numItems = 20;
-		var list2 = new module.List("Dorm Room Stuff");
+		var list2 = new module.List("Athletic Clothes");
 		for (var i = 0; i < numItems; i++) {
-			list2.addItem("Item " + i);
+			list2.addItem("Shirt " + i);
 		}
 		lists.push(list2);
 	}
