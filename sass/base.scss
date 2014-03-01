@@ -203,6 +203,7 @@ body{
 	cursor: pointer;
 	background-color: $lighter-grey;
 	border: 1px solid $light-grey;
+	outline: none;
 	font-size: 12px;
 	font-weight: 200;
 	text-align: center;
@@ -333,10 +334,13 @@ input[type="text"]:focus {
 
 // Modal styles
 .ui-dialog {
-	@include clearfix();
+	display: block;
 	padding: 20px;
 	background-color: #fff;
 	outline: none;
+	@include box-shadow(0px 2px 6px #ccc);
+	@include transition(0.25s);
+	@include clearfix();
 }
 
 .ui-dialog-title {
