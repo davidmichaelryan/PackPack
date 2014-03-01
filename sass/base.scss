@@ -27,6 +27,7 @@ body{
 	border: 5px solid gray;
 	font-family: "Raleway", Arial, sans-serif;
 	border-radius:3px;
+	background-color: #333;
 }
 
 .left {
@@ -49,7 +50,7 @@ body{
 #main-screen {
 	position: relative;
 	left: 0px;
-
+	background-color: #fff;
 	&.screen-push {
 		left: $menu-width;
 	}
@@ -149,6 +150,9 @@ body{
 	list-style: none;
 	overflow:hidden;
 	display:block;
+	&> .list-object:nth-child(even){
+		background-color: #f3f3f3;
+	}
 }
 
 .list-object {
@@ -197,8 +201,9 @@ body{
 
 .group-membership {
 	@extend .button;
-	margin-top: -25px;
-	margin-bottom: -5px;
+	margin-top: -5px;
+	width: 35px;
+	text-align: center;
 	&.notMember {
 		color: white;
 		background-color: green;
@@ -245,8 +250,8 @@ body{
 	height:20px;
 	border-radius:15px;
 	text-align: left;
-	-webkit-transition:background-color 0.25s 0.25s;
-	transition:background-color 0.25s 0.25s;
+	background-color: green;
+	@include transition(background-color, 0.25s, 0.25s);
 	position:relative;
 	z-index:1;
 	.circle{
@@ -259,14 +264,18 @@ body{
 		top:-3px;
 		left:0px;
 		display: inline-block;
-		-webkit-transition:left 0.5s;
-		transition:left 0.5s;
-		// background-image:;
+		@include transition(left, 0.5s);
 	}
-}
+	&.unpacked {
+		background-color: #999999;
+	}
 
-.list > .list-object:nth-child(even){
-	background-color: #f3f3f3;
+	&> .circle {
+		left: 48px;
+		&.unpacked {
+			left: 0px;
+		}
+	}
 }
 
 .unpacked{
@@ -280,3 +289,5 @@ body{
 		left:50px;
 	}
 }
+
+
