@@ -168,20 +168,20 @@ function init() {
       		//width: 350,
       		modal: true,
       		buttons: {
-        		"Create item": function() {
-        			var name = $("#item-name-modal").val();
-        			var desc = $("#item-desc-modal").val();
-        			var listName = $("#item-list-modal").val();
-        			console.log(listName);
-        			try {
-        				app.addItemToList(name, desc, listName);
-        				populateListView(listName);
-        				$( this ).dialog( "close" );
-        			} catch (err) {
-        				console.log(err.message);
-        			}
-          			
-        		},
+        		"Create item":
+        			function() {
+	        			var name = $("#item-name-modal").val();
+	        			var desc = $("#item-desc-modal").val();
+	        			var listName = $("#item-list-modal").val();
+	        			console.log(listName);
+	        			try {
+	        				app.addItemToList(name, desc, listName);
+	        				populateListView(listName);
+	        				$( this ).dialog( "close" );
+	        			} catch (err) {
+	        				console.log(err.message);
+	        			}
+          			},
         		Cancel: function() {
           			$( this ).dialog( "close" );
         		}
@@ -189,7 +189,7 @@ function init() {
       		close: function() {
         		$("#item-name-modal").val("");
         		$("#item-desc-modal").val("");
-      		}
+      		},
     	});
 	});
 

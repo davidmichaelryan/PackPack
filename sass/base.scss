@@ -1,4 +1,5 @@
 @import "compass/css3";
+@import "compass/utilities/general/clearfix";
 
 // Standard heights
 $menu-width: 400px;
@@ -7,7 +8,11 @@ $header-height: 80px;
 // Colors
 $black: #000;
 $light-grey: #d3d3d3;
+$lighter-grey: #e9e9e9;
 $light-blue: #52A2FF;
+
+// Font family
+$raleway: "Raleway", Arial, sans-serif;
 
 html, h1, h2, p, a, img{
 	margin:0 auto;
@@ -25,7 +30,7 @@ body{
 	margin: 20px auto;
 	padding: 0px;
 	border: 5px solid gray;
-	font-family: "Raleway", Arial, sans-serif;
+	font-family: $raleway;
 	border-radius:3px;
 	background-color: #333;
 }
@@ -62,6 +67,7 @@ body{
 	overflow:hidden;
 	position:relative;
 	border-bottom:4px solid $light-grey;
+	text-align: center;
 	#menu-button{
 		display:inline-block;
 		float:left;
@@ -75,6 +81,8 @@ body{
 		content: "";
 	}
 	h1{	
+		display: inline;
+		cursor: pointer;
 		width:auto;
 		color:white;
 		line-height: $header-height;
@@ -192,6 +200,7 @@ body{
 	display: block;
 	padding: 10px;
 	cursor: pointer;
+	background-color: $lighter-grey;
 	border: 1px solid $light-grey;
 	font-size: 12px;
 	font-weight: 200;
@@ -290,4 +299,81 @@ body{
 	}
 }
 
+// Form styles
+form {
+	@include clearfix();
+}
 
+label {
+	color: $light-blue;
+	text-transform: uppercase;
+	float: left;
+	padding-top: 20px;
+	&:first-child {
+		padding:0;
+	}
+}
+
+input[type="text"] {
+	float: left;
+	clear: both;
+	width: 100%;
+	padding: 5px;
+	border: 1px solid $light-grey;
+	font-size: 20px;
+	font-family: $raleway;
+}
+
+// Modal styles
+.ui-dialog {
+	@include clearfix();
+	padding: 20px;
+	background-color: #fff;
+}
+
+.ui-dialog-title {
+	display: none;
+}
+
+.ui-widget-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #aaa;
+	@include opacity(0.2);
+}
+
+.ui-button {
+	@extend .button;
+	font-family: "Raleway", Arial, sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	//text-transform: uppercase; // Not sold on the use of uppercase here...
+	float: right;
+	margin-left: 10px;
+}
+
+// Do we want a close button?
+.ui-dialog-titlebar-close {
+	display: none; // Turn off to see close button
+	position: relative;
+	height: 18px;
+	width: 18px;
+	background-color: $light-blue;
+	border-radius: 18px;
+	border: none;
+	color: white;
+	&:before {
+		position: absolute;
+		top: 2px;
+		left: 7px;
+		content: 'x';
+		font-weight: 700;
+		font-size: 13px;
+	}
+	.ui-button-text {
+		font-size: 0px;
+	}
+}
