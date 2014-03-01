@@ -22,14 +22,63 @@
 				left: 0px;
 			}
 			body {
-				background-color: #333333;
+				background-color: #222222;
 			}
 			#main-screen {
 				background-color: #FFFFFF;
 			}
+			#task-section {
+				position: absolute;
+				width: 300px;
+				height: inherit;
+
+				top: inherit;
+				left: 30px;
+
+				color: #DDDDDD;
+			}
+			#task-section h2 {
+				color: white;
+				margin-bottom: 10px;
+				font-size: 2em;
+				overflow: scroll;
+			}
+			#task-section p {
+				margin-bottom: 15px;
+				font-size: 1.25em;
+				line-height: 150%;
+			}
+			#task-section b {
+				color: #FFFF99;
+			}
+
+			#task-continue {
+				color: #4444FF;
+				width: 100px;
+				margin: auto;
+				font-size: 1.25em;
+			}
+			#task-overview {
+				position: absolute;
+				width: 300px;
+				height: inherit;
+
+				top: inherit;
+				right: 30px;
+
+				color: #DDDDDD;
+				text-align: right;
+			}
 		</style>
 	</head>
 	<body>
+		<div id="task-section">
+			<h2>Task <span id="task-number">1</span></h2>
+			<p>First, imagine you are an incoming freshman beginning to brainstorm what you need for college. Make a list called "School Supplies" and add a "Desk Lamp" to that list. After you are finished navigate back to the home screen.</p>
+			<!--<div id="task-continue">Continue</div>-->
+		</div>
+		<div id="task-overview">
+		</div>
 		<div id="appWrapper">
 			<div id="menu">
 				<ul class="list">

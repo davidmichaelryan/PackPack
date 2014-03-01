@@ -3,10 +3,114 @@
 
 // Create javascript backend
 var app = new PackPack.App("menlocaleb");
+// store the current variable;
 var currentView = "#homepage";
+
+/* ********** Variables related to running interface as a test runner ******* */
+var runTestRunner = false; // turn on or off test runner
+
+// list of tasks for user to complete
+var tasks = [
+	{
+		description: "First, imagine you are an incoming freshman beginning to brainstorm what you need for college. <b>Make a list called 'School Supplies'</b> and <b>add a 'Desk Lamp'</b> to that list. After you are finished <b>navigate back to the home screen.</b>",
+		check: function() {
+			var taskCompleted = false;
+			try {
+				var list = app.getList("School Supplies");
+				for (var i = 0; i < list.getItems().length; i++) {
+					taskCompleted = taskCompleted || (list.getItem(i).name === "Desk Lamp");
+				}
+			} catch (error) {
+				console.log(error);
+				return false;
+			}
+
+			taskCompleted = taskCompleted && (currentView === "#homepage");
+
+			return taskCompleted;
+		}
+	},
+	{
+		description: "Now you want to see what other people are bringing to college. <b>Join a group for Elder Residential Hall</b>, and once you are done <b>return to the home page.</b>",
+		check: function() {
+			var taskCompleted = false;
+			try {
+				var groups = app.getJoinedGroups();
+				for (var i = 0; i < groups.length; i++) {
+					taskCompleted = taskCompleted || (groups[i].name === "Elder Residential Hall");
+				}
+			} catch (error) {
+				console.log(error);
+				return false;
+			}
+
+			taskCompleted = taskCompleted && (currentView === "#homepage");
+
+			return taskCompleted;
+		}
+	},
+	{
+		description: "Finally, imagine you purchased and subsequently <b>packed an 'Eraser'</b>. <b>Update your School Supplies list</b> accordingly, then <b>return to the home page.</b>",
+		check: function() {
+			var taskCompleted = false;
+			try {
+				var list = app.getList("School Supplies");
+				var items = list.getItems();
+				// find item Eraser
+				for (var i = 0; i < items.length; i++) {
+					taskCompleted = taskCompleted || ((items[i].name === "Eraser") && (items[i].getStatus() === "packed"));
+				}
+			} catch (error) {
+				console.log(error);
+				return false;
+			}
+
+			taskCompleted = taskCompleted && (currentView === "#homepage");
+
+			return taskCompleted;
+		}
+	}
+
+];
+var taskIndex = 0;
+var completedTaskColor = "#33FF33";
+var attemptingTaskColor = "#FFFFFF";
+
+
+
+/* ***************************************************  */
 
 
 function init() {
+	// get param for testing or not
+	var query = window.location.search.substring(1);
+	if ( query === "runTestRunner") {
+		runTestRunner = true;
+	}
+
+	if (runTestRunner) {
+		$("#task-number").html(taskIndex + 1);
+		for (var i = 0; i < tasks.length; i++) {
+			var taskNum = i + 1;
+			$("#task-overview").append("<h2> Task "+ taskNum +"</h2>").css('color', "#999999");
+		}
+		if (taskIndex < tasks.length) {
+			$("#task-section > p").html(tasks[taskIndex].description);
+			$("#task-overview >").first().css('color', attemptingTaskColor);
+		}
+	} else {
+		$("#task-overview").hide();
+		$("#task-section").hide();
+	}
+
+
+
+	// prevent forms from submitting
+	$("form").submit(function(event) {
+		event.preventDefault();
+	})
+
+
 	$("#list").hide();
 	$("#grouppage").hide();
 	$("#groups > .list-header > h2").click( showPage("groups"));
@@ -239,6 +343,24 @@ function showPage( page, args ) {
 			default:
 				alert("error");
 		}
+
+		if (runTestRunner) {
+			if ((taskIndex < tasks.length) && (tasks[taskIndex].check())) {
+				taskIndex = taskIndex + 1;
+				$("#task-overview :nth-child(" + taskIndex +")").css('color',completedTaskColor);
+			
+				var taskNum = taskIndex+1;
+
+				if (taskIndex < tasks.length) {
+					$("#task-overview :nth-child(" + taskNum +")").css('color',attemptingTaskColor);
+					$("#task-number").html(taskNum);
+					$("#task-section > p").html(tasks[taskIndex].description);
+				} else {
+					$("#task-section > p").html("You're finished with testing!");
+					$("#task-section > h2").html("Congratulations!");
+				}
+			}
+		}	
 	};	
 }
 
@@ -268,6 +390,5 @@ $(document).ready(function() {
 	app.createStuff();
 	app.initListOfGroupsForProduction();
 	goToHomePage();
-
 
 });
