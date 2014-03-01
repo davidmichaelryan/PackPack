@@ -195,7 +195,7 @@ module.App = function( userName ) {
 
 	/* This is okay to edit */
 	this.initListOfGroupsForProduction = function() {
-		var group = new module.Group("Elder Residential Hall");
+		var group = new module.Group("Willard Residential Hall");
 		group.list.addItem("Shower Caddy");
 		group.list.addItem("Pillow");
 		groups.push(group.copy());
@@ -232,7 +232,7 @@ module.App = function( userName ) {
 		group.list.addItem("Backpack");
 		groups.push(group.copy());
 
-		group = new module.Group("Willard Residential Hall");
+		group = new module.Group("Elder Residential Hall");
 		groups.push(group.copy());
 
 		group = new module.Group("Jones Residential Hall");

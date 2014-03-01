@@ -7,6 +7,10 @@ var app = new PackPack.App("menlocaleb");
 var currentView = "#homepage";
 
 /* ********** Variables related to running interface as a test runner ******* */
+/*
+	Task runner only checks for task completion on call to showPage, so this must be the last action in a task sequence.
+	Also, all view changes must call this function.
+*/
 var runTestRunner = false; // turn on or off test runner
 
 // list of tasks for user to complete
@@ -111,9 +115,14 @@ function init() {
 	})
 
 
+	
+	$("#groups > .list-header > h2").click( showPage("groups"));
+	$("#home-menu-link").click( showPage("home"));
+	$("#groups-menu-link").click( showPage("groups"));
+
+
 	$("#list").hide();
 	$("#grouppage").hide();
-	$("#groups > .list-header > h2").click( showPage("groups"));
 	$('#add-budget-modal').hide();
 	$('#add-list-modal').hide();
 	$('#add-group-modal').hide();
