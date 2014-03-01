@@ -79,6 +79,20 @@ function init() {
       		}
     	});
 	});
+
+	$("#list > .list-controls").children().click(function() {
+		switch($(this).html()) {
+			case "Move":
+				alert("Move Action: Not yet implemented.");
+				break;
+			case "Delete":
+				alert("Delete Action: Not yet implemented.");
+				break;
+			default:
+				console.log("Unrecognized list control click");
+		}
+	});
+
 }
 
 
