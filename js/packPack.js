@@ -97,6 +97,7 @@ module.List = function( name ) {
 		var copyList = new module.List(this.name);
 		for (var i = 0; i < listItems.length; i++) {
 			copyList.addItem(listItems[i].name, listItems[i].desc);
+			copyList.editItem(i).setStatus(listItems[i].getStatus());
 		}
 		return copyList;
 	}
@@ -334,6 +335,8 @@ module.App = function( userName ) {
 	this.createStuff = function() {
 		var list = new module.List("School Supplies");
 		list.addItem("Ruler", "A ruler");
+		var item = list.editItem(0);
+		item.setStatus("packed");
 		list.addItem("Pencil");
 		lists.push(list);
 

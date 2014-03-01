@@ -62,7 +62,7 @@ test("Item Public Parameters", function() {
 
 test("Item Private Parameters", function() {
 	var item = new PackPack.Item("Name", "Description");
-	var defaultStatus = "Unpacked";
+	var defaultStatus = "unpacked";
 
 	// check default value
 	deepEqual(defaultStatus, item.getStatus(), "Default status is correct.");
@@ -189,17 +189,32 @@ test("List Item API", function() {
 test("List Copy Function", function() {
 	var list = new PackPack.List("Name");
 	list.addItem("Item Name", "Description");
+	list.addItem("Item2", "");
+	list.editItem(1).setStatus("packed");
 
 	var copyList = list.copy();
 
 	deepEqual(list, copyList, "Copy creates new object with same attributes");
-	deepEqual(list.getItems(), copyList.getItems(), "Copy also copies private data");
+	var items = list.getItems();
+	for (var i = 0; i < items.length; i++) {
+		itemsEqual(items[i], copyList.getItem(i), "Copy also copies private data");
+	}
+	
 
 	copyList.name = "New Name";
 	copyList.addItem("Second Item", "Description");
+	copyList.editItem(0).name = "new name";
+	copyList.editItem(0).setStatus('packed');
+	copyList.editItem(1).name = "new name";
+	copyList.editItem(1).setStatus('unpacked');
 
 	notDeepEqual(list, copyList, "Copy doesn't leave any ties to previous object");
-	notDeepEqual(list.getItems(), copyList.getItems(), "Copy also doesn't leave ties between private data");
+	items = list.getItems();
+	for (var i = 0; i < items.length; i++) {
+		notDeepEqual(items[i], copyList.getItem(i), "Copy also doesn't leave ties between private data");
+		notDeepEqual(items[i].getStatus(), copyList.getItem(i).getStatus(), "Copy also doesn't leave ties between private data");
+	}
+	
 });
 
 

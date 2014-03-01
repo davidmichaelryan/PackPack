@@ -3,6 +3,25 @@
 		<link href='http://fonts.googleapis.com/css?family=Raleway:700,400,200,100' rel='stylesheet' type='text/css'>
 		<link href="jquery-ui-1.10.4/themes/base/jquery.ui.all.css" rel="stylesheet">
 		<link rel="stylesheet" href="stylesheets/base.css">
+		<style>
+			.group-membership {
+				margin-top: -5px;
+				width: 35px;
+				text-align: center;
+			}
+			.item-status {
+				background-color: green;
+			}
+			.item-status.unpacked {
+				background-color: #999999;
+			}
+			.item-status > .circle {
+				left: 48px;
+			}
+			.item-status > .circle.unpacked {
+				left: 0px;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="appWrapper">

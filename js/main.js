@@ -106,6 +106,10 @@ function showView( pageId ) {
 
 
 
+function setItemStatusClass( item ) {
+	return (item.getStatus() === 'unpacked') ? 'unpacked' : '';
+}
+
 function populateLists() {
 	var container = $("#list-names");
 	container.empty(); // clear container
@@ -125,9 +129,10 @@ function populateListView( listName ) {
 	container.empty(); // clear container
 	var items = app.getList(listName).getItems();
 	for (var i = 0; i < items.length; i++) {
-		var html = '<li id="item-' + i + '" class="list-object"><a href="#">' + items[i].name + '</a><span class="item-status ' + items[i].getStatus() + '"><div class="circle"></div></span></li>';
+		var html = '<li id="item-' + i + '" class="list-object"><a href="#">' + items[i].name + '</a><span id="item-status-' + i + '" class="item-status ' + setItemStatusClass(items[i]) + '"><div class="circle ' + setItemStatusClass(items[i]) + '"></div></span></li>';
 		container.append(html);
 		container.children().last().click( showPage("item", { 'name' : items[i].name}));
+		container.children().last().children(".item-status").click( changeItemStatus(i));
 	}
 
 	// update hidden field on add item modal
@@ -171,7 +176,7 @@ function populateGroupsView() {
 		} else {
 			otherGroupsContainer.append(html);
 			otherGroupsContainer.children().last().click( showPage("group-page", { 'name' : groups[i].name}));
-			otherGroupsContainer.children().last().find(".group-membership").click( joinGroup(i))
+			otherGroupsContainer.children().last().find(".group-membership").click( joinGroup(i));
 		}
 		
 	}
@@ -220,7 +225,7 @@ function showPage( page, args ) {
 				goToListPage(args.name);
 				break;
 			case "item":
-				console.log(args.name);
+				//console.log(args.name);
 				break;
 			case "home":
 				goToHomePage();
@@ -235,6 +240,27 @@ function showPage( page, args ) {
 				alert("error");
 		}
 	};	
+}
+
+function changeItemStatus( index ) {
+	return function() {
+		var listName = $("#item-list-modal").val();
+		// update backend
+		try {
+			var item = app.editItemFromList(index, listName);
+			if ($(this).hasClass('unpacked')) {
+				item.setStatus('packed');
+			} else {
+				item.setStatus('unpacked');
+			}
+		} catch (error) {
+			console.log(error.message);
+		}
+
+		// update UI
+		$(this).toggleClass('unpacked');
+		$(this).children(".circle").toggleClass('unpacked');
+	};
 }
 
 $(document).ready(function() {
