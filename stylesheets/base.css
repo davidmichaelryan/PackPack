@@ -6,10 +6,11 @@ html, h1, h2, p, a, img {
 /* line 21, ../sass/base.scss */
 .place-holder {
   width: 100%;
-  height: 200px;
+  height: 150px;
+  padding: 15px 10px 0 10px;
 }
 
-/* line 26, ../sass/base.scss */
+/* line 27, ../sass/base.scss */
 body {
   overflow: scroll;
   width: 480px;
@@ -22,17 +23,17 @@ body {
   background-color: #333;
 }
 
-/* line 38, ../sass/base.scss */
+/* line 39, ../sass/base.scss */
 .left {
   float: left;
 }
 
-/* line 42, ../sass/base.scss */
+/* line 43, ../sass/base.scss */
 .right {
   float: right;
 }
 
-/* line 46, ../sass/base.scss */
+/* line 47, ../sass/base.scss */
 #appWrapper {
   display: block;
   position: relative;
@@ -42,18 +43,18 @@ body {
   margin-bottom: 10px;
 }
 
-/* line 55, ../sass/base.scss */
+/* line 56, ../sass/base.scss */
 #main-screen {
   position: relative;
   left: 0px;
   background-color: #fff;
 }
-/* line 59, ../sass/base.scss */
+/* line 60, ../sass/base.scss */
 #main-screen.screen-push {
   left: 400px;
 }
 
-/* line 64, ../sass/base.scss */
+/* line 65, ../sass/base.scss */
 #header {
   height: 80px;
   background-color: #52a2ff;
@@ -62,7 +63,7 @@ body {
   border-bottom: 4px solid lightgrey;
   text-align: center;
 }
-/* line 71, ../sass/base.scss */
+/* line 72, ../sass/base.scss */
 #header #menu-button {
   display: inline-block;
   float: left;
@@ -75,7 +76,7 @@ body {
   border-top: 6px solid white;
   content: "";
 }
-/* line 83, ../sass/base.scss */
+/* line 84, ../sass/base.scss */
 #header h1 {
   display: inline;
   cursor: pointer;
@@ -85,14 +86,14 @@ body {
   text-align: center;
   font-weight: 400;
 }
-/* line 92, ../sass/base.scss */
+/* line 93, ../sass/base.scss */
 #header #search {
   display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
 }
-/* line 97, ../sass/base.scss */
+/* line 98, ../sass/base.scss */
 #header #search img {
   padding-right: 22px;
   padding-top: 27px;
@@ -101,7 +102,7 @@ body {
   float: right;
 }
 
-/* line 107, ../sass/base.scss */
+/* line 108, ../sass/base.scss */
 .content-wrapper {
   overflow: scroll;
   height: 616px;
@@ -109,7 +110,7 @@ body {
   padding: 0 35px 0 10px;
 }
 
-/* line 117, ../sass/base.scss */
+/* line 118, ../sass/base.scss */
 .list-header {
   display: block;
   overflow: hidden;
@@ -117,14 +118,14 @@ body {
   border-top: 2px solid lightgrey;
   border-bottom: 2px solid lightgrey;
 }
-/* line 123, ../sass/base.scss */
+/* line 124, ../sass/base.scss */
 .list-header h2 {
   display: inline-block;
   line-height: 60px;
   float: left;
   cursor: pointer;
 }
-/* line 129, ../sass/base.scss */
+/* line 130, ../sass/base.scss */
 .list-header a {
   display: inline-block;
   line-height: 60px;
@@ -134,22 +135,22 @@ body {
   font-size: 3em;
   font-weight: 200;
 }
-/* line 138, ../sass/base.scss */
+/* line 139, ../sass/base.scss */
 .list-header.list-view {
   border-top: none;
 }
 
-/* line 144, ../sass/base.scss */
+/* line 145, ../sass/base.scss */
 #lists .list-header {
   border-top: none;
 }
 
-/* line 150, ../sass/base.scss */
+/* line 151, ../sass/base.scss */
 #list .list-object:last-child, #list #menu .menu-item:last-child, #menu #list .menu-item:last-child {
   margin-bottom: 30px;
 }
 
-/* line 155, ../sass/base.scss */
+/* line 156, ../sass/base.scss */
 .list {
   margin: 5px 0 30px 0;
   padding: 0;
@@ -157,32 +158,32 @@ body {
   overflow: hidden;
   display: block;
 }
-/* line 161, ../sass/base.scss */
+/* line 162, ../sass/base.scss */
 .list > .list-object:nth-child(even), #menu .list > .menu-item:nth-child(even) {
   background-color: #f3f3f3;
 }
 
-/* line 166, ../sass/base.scss */
+/* line 167, ../sass/base.scss */
 .list-object, #menu .menu-item {
   border-bottom: 1px dashed #D3D3D3;
   padding: 10px;
   overflow: hidden;
   display: block;
 }
-/* line 171, ../sass/base.scss */
+/* line 172, ../sass/base.scss */
 .list-object a, #menu .menu-item a {
   text-align: left;
   color: black;
   text-decoration: none;
   font-size: 1.1em;
 }
-/* line 177, ../sass/base.scss */
+/* line 178, ../sass/base.scss */
 .list-object span, #menu .menu-item span {
   float: right;
   display: inline-block;
 }
 
-/* line 183, ../sass/base.scss */
+/* line 184, ../sass/base.scss */
 .list-controls {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -195,14 +196,14 @@ body {
   padding: 15px;
   background-color: lightgrey;
 }
-/* line 192, ../sass/base.scss */
+/* line 193, ../sass/base.scss */
 .list-controls a {
   text-transform: uppercase;
   text-decoration: none;
   color: black;
 }
 
-/* line 199, ../sass/base.scss */
+/* line 200, ../sass/base.scss */
 .button, .group-membership, .ui-button {
   display: block;
   padding: 10px;
@@ -219,24 +220,24 @@ body {
   border-radius: 5px;
 }
 
-/* line 211, ../sass/base.scss */
+/* line 212, ../sass/base.scss */
 .group-membership {
   margin-top: -5px;
   width: 35px;
   text-align: center;
 }
-/* line 216, ../sass/base.scss */
+/* line 217, ../sass/base.scss */
 .group-membership.notMember {
   color: white;
   background-color: green;
 }
-/* line 220, ../sass/base.scss */
+/* line 221, ../sass/base.scss */
 .group-membership.member {
   color: white;
   background-color: red;
 }
 
-/* line 226, ../sass/base.scss */
+/* line 227, ../sass/base.scss */
 #menu {
   position: absolute;
   width: 400px;
@@ -247,29 +248,29 @@ body {
   background-color: #ECF0F1;
   padding-top: 80px;
 }
-/* line 236, ../sass/base.scss */
+/* line 237, ../sass/base.scss */
 #menu.menu-push {
   left: 0px;
 }
-/* line 240, ../sass/base.scss */
+/* line 241, ../sass/base.scss */
 #menu .menu-item {
   padding: 20px;
 }
 
-/* line 246, ../sass/base.scss */
+/* line 247, ../sass/base.scss */
 #menu, #main-screen {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
-/* line 252, ../sass/base.scss */
+/* line 253, ../sass/base.scss */
 .list, .list-object, #menu .menu-item {
   position: relative;
   z-index: 0;
 }
 
-/* line 257, ../sass/base.scss */
+/* line 258, ../sass/base.scss */
 .item-status {
   width: 75px;
   height: 20px;
@@ -283,7 +284,7 @@ body {
   position: relative;
   z-index: 1;
 }
-/* line 266, ../sass/base.scss */
+/* line 267, ../sass/base.scss */
 .item-status .circle {
   border-radius: 50%;
   width: 25px;
@@ -299,52 +300,52 @@ body {
   -o-transition: left, 0.5s;
   transition: left, 0.5s;
 }
-/* line 278, ../sass/base.scss */
+/* line 279, ../sass/base.scss */
 .item-status.unpacked {
   background-color: #999999;
 }
-/* line 282, ../sass/base.scss */
+/* line 283, ../sass/base.scss */
 .item-status > .circle {
   left: 48px;
 }
-/* line 284, ../sass/base.scss */
+/* line 285, ../sass/base.scss */
 .item-status > .circle.unpacked {
   left: 0px;
 }
 
-/* line 290, ../sass/base.scss */
+/* line 291, ../sass/base.scss */
 .unpacked {
   background-color: lightgrey;
 }
 
-/* line 294, ../sass/base.scss */
+/* line 295, ../sass/base.scss */
 .packed {
   background-color: #99FF66;
 }
-/* line 297, ../sass/base.scss */
+/* line 298, ../sass/base.scss */
 .packed .circle {
   left: 50px;
 }
 
-/* line 303, ../sass/base.scss */
+/* line 304, ../sass/base.scss */
 form {
   overflow: hidden;
   *zoom: 1;
 }
 
-/* line 307, ../sass/base.scss */
+/* line 308, ../sass/base.scss */
 label {
   color: #52a2ff;
   text-transform: uppercase;
   float: left;
   padding-top: 20px;
 }
-/* line 312, ../sass/base.scss */
+/* line 313, ../sass/base.scss */
 label:first-child {
   padding: 0;
 }
 
-/* line 317, ../sass/base.scss */
+/* line 318, ../sass/base.scss */
 input[type="text"] {
   float: left;
   clear: both;
@@ -353,22 +354,33 @@ input[type="text"] {
   border: 1px solid lightgrey;
   font-size: 20px;
   font-family: "Raleway", Arial, sans-serif;
+  -webkit-transition: border, 0.25s;
+  -moz-transition: border, 0.25s;
+  -o-transition: border, 0.25s;
+  transition: border, 0.25s;
 }
 
-/* line 328, ../sass/base.scss */
+/* line 329, ../sass/base.scss */
+input[type="text"]:focus {
+  border: 1px solid #52a2ff;
+  outline: none;
+}
+
+/* line 335, ../sass/base.scss */
 .ui-dialog {
   overflow: hidden;
   *zoom: 1;
   padding: 20px;
   background-color: #fff;
+  outline: none;
 }
 
-/* line 334, ../sass/base.scss */
+/* line 342, ../sass/base.scss */
 .ui-dialog-title {
   display: none;
 }
 
-/* line 338, ../sass/base.scss */
+/* line 346, ../sass/base.scss */
 .ui-widget-overlay {
   position: fixed;
   top: 0;
@@ -380,7 +392,7 @@ input[type="text"] {
   opacity: 0.2;
 }
 
-/* line 348, ../sass/base.scss */
+/* line 356, ../sass/base.scss */
 .ui-button {
   font-family: "Raleway", Arial, sans-serif;
   font-weight: 400;
@@ -389,7 +401,7 @@ input[type="text"] {
   margin-left: 10px;
 }
 
-/* line 359, ../sass/base.scss */
+/* line 367, ../sass/base.scss */
 .ui-dialog-titlebar-close {
   display: none;
   position: relative;
@@ -400,7 +412,7 @@ input[type="text"] {
   border: none;
   color: white;
 }
-/* line 368, ../sass/base.scss */
+/* line 376, ../sass/base.scss */
 .ui-dialog-titlebar-close:before {
   position: absolute;
   top: 2px;
@@ -409,7 +421,7 @@ input[type="text"] {
   font-weight: 700;
   font-size: 13px;
 }
-/* line 376, ../sass/base.scss */
+/* line 384, ../sass/base.scss */
 .ui-dialog-titlebar-close .ui-button-text {
   font-size: 0px;
 }
