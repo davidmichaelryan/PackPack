@@ -125,7 +125,7 @@ function populateListView( listName ) {
 	container.empty(); // clear container
 	var items = app.getList(listName).getItems();
 	for (var i = 0; i < items.length; i++) {
-		var html = '<li id="item-' + i + '" class="list-object"><a href="#">' + items[i].name + '</a><span class="item-status">' + items[i].getStatus() + '</span></li>';
+		var html = '<li id="item-' + i + '" class="list-object"><a href="#">' + items[i].name + '</a><span class="item-status ' + items[i].getStatus() + '"><div class="circle"></div></span></li>';
 		container.append(html);
 		container.children().last().click( showPage("item", { 'name' : items[i].name}));
 	}
@@ -236,13 +236,6 @@ function showPage( page, args ) {
 		}
 	};	
 }
-
-
-
-
-
-
-
 
 $(document).ready(function() {
 	init();

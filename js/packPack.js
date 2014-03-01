@@ -25,7 +25,7 @@ module.Item = function( itemName, description ) {
 	// Data
 	this.name = (itemName) ? itemName : "";
 	this.desc = (description) ? description : "";
-	var status = "Unpacked"; // want to make this an object?
+	var status = "unpacked"; // want to make this an object?
 	// link to id of dom element of picture?
 
 

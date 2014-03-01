@@ -163,18 +163,17 @@ body {
 /* line 159, ../sass/base.scss */
 .list-object a, #menu .menu-item a {
   text-align: left;
-  display: block;
   color: black;
   text-decoration: none;
   font-size: 1.1em;
 }
-/* line 166, ../sass/base.scss */
+/* line 165, ../sass/base.scss */
 .list-object span, #menu .menu-item span {
   float: right;
   display: inline-block;
 }
 
-/* line 172, ../sass/base.scss */
+/* line 171, ../sass/base.scss */
 .list-controls {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -187,14 +186,14 @@ body {
   padding: 15px;
   background-color: lightgrey;
 }
-/* line 181, ../sass/base.scss */
+/* line 180, ../sass/base.scss */
 .list-controls a {
   text-transform: uppercase;
   text-decoration: none;
   color: black;
 }
 
-/* line 188, ../sass/base.scss */
+/* line 187, ../sass/base.scss */
 .button, .group-membership {
   display: block;
   padding: 10px;
@@ -210,23 +209,23 @@ body {
   border-radius: 5px;
 }
 
-/* line 199, ../sass/base.scss */
+/* line 198, ../sass/base.scss */
 .group-membership {
   margin-top: -25px;
   margin-bottom: -5px;
 }
-/* line 203, ../sass/base.scss */
+/* line 202, ../sass/base.scss */
 .group-membership.notMember {
   color: white;
   background-color: green;
 }
-/* line 207, ../sass/base.scss */
+/* line 206, ../sass/base.scss */
 .group-membership.member {
   color: white;
   background-color: red;
 }
 
-/* line 213, ../sass/base.scss */
+/* line 212, ../sass/base.scss */
 #menu {
   position: absolute;
   width: 400px;
@@ -237,18 +236,69 @@ body {
   background-color: #ECF0F1;
   padding-top: 80px;
 }
-/* line 223, ../sass/base.scss */
+/* line 222, ../sass/base.scss */
 #menu.menu-push {
   left: 0px;
 }
-/* line 227, ../sass/base.scss */
+/* line 226, ../sass/base.scss */
 #menu .menu-item {
   padding: 20px;
 }
 
-/* line 233, ../sass/base.scss */
+/* line 232, ../sass/base.scss */
 #menu, #main-screen {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   transition: all 0.3s ease;
+}
+
+/* line 238, ../sass/base.scss */
+.list, .list-object, #menu .menu-item {
+  position: relative;
+  z-index: 0;
+}
+
+/* line 243, ../sass/base.scss */
+.item-status {
+  width: 75px;
+  height: 20px;
+  border-radius: 15px;
+  text-align: left;
+  -webkit-transition: background-color 0.25s 0.25s;
+  transition: background-color 0.25s 0.25s;
+  position: relative;
+  z-index: 1;
+}
+/* line 252, ../sass/base.scss */
+.item-status .circle {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border: 1px solid gray;
+  position: relative;
+  top: -3px;
+  left: 0px;
+  display: inline-block;
+  -webkit-transition: left 0.5s;
+  transition: left 0.5s;
+}
+
+/* line 268, ../sass/base.scss */
+.list > .list-object:nth-child(even), #menu .list > .menu-item:nth-child(even) {
+  background-color: #f3f3f3;
+}
+
+/* line 272, ../sass/base.scss */
+.unpacked {
+  background-color: lightgrey;
+}
+
+/* line 276, ../sass/base.scss */
+.packed {
+  background-color: #99FF66;
+}
+/* line 279, ../sass/base.scss */
+.packed .circle {
+  left: 50px;
 }
