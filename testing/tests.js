@@ -18,7 +18,7 @@ function listsEqual( listOne, listTwo, message ) {
 /* ********************************************** */
 
 
-
+(function() {
 /* ********************************************** */
 module("User Unit Tests");
 test("User Construction", function() {
@@ -26,7 +26,10 @@ test("User Construction", function() {
 	ok(new PackPack.User("Name"), "Can provide name");
 });
 
+})();
 
+
+(function() {
 /* ********************************************** */
 module("Item Unit Tests"); 
 test("Item Construction", function() {
@@ -100,6 +103,11 @@ test("Item Copy Function", function() {
 });
 
 
+})();
+
+
+
+(function() {
 /* ********************************************** */
 module("List Unit Tests");
 test("List Construction", function() {
@@ -218,8 +226,14 @@ test("List Copy Function", function() {
 });
 
 
+})();
 
+
+(function() {
 /* ********************************************** */
+	var group, expectedGroupList, expectedMembership;
+
+
 module("Group Unit Tests", {
 	setup: function() {
 		group = new PackPack.Group("Group Name");
@@ -296,8 +310,11 @@ test("Group Copy Function", function() {
 });
 
 
+})();
 
 
+
+(function() {
 /* ********************************************** */
 module("App Unit Tests");
 test("App Constrution", function() {
@@ -453,6 +470,14 @@ test("Add/Edit/Remove Item API for App", function() {
 
 });
 
+})();
+
+(function() {
+
+	var app;
+	var expectedGroups;
+	var expectedJoinedGroups;
+	var expectedUnJoinedGroups;
 
 module("Groups in App API Unit Testing", {
 	setup: function() {
@@ -467,6 +492,7 @@ module("Groups in App API Unit Testing", {
 		expectedUnJoinedGroups.push(expectedGroups[1].copy());
 	}
 });
+
 test("getGroups", function() {
 	var myGroups = app.getGroups();
 	deepEqual(myGroups, expectedGroups, "Get groups returns correct data."); // doesn't check private data, but assume works b/c checked copy function
@@ -532,7 +558,7 @@ test("leaveGroup", function() {
 
 });
 
-
+})();
 
 
 
