@@ -372,9 +372,10 @@ module.App = function( userName ) {
 
 		var numItems = 20;
 		var list2 = new module.List("Athletic Clothes");
-		for (var i = 0; i < numItems; i++) {
-			list2.addItem("Shirt " + i);
-		}
+		list2.addItem("Soccer cleats");
+		list2.addItem("Sweatpants");
+		list2.addItem("Shorts");
+		list2.addItem("Head-band");
 		lists.push(list2);
 	}
 
