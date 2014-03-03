@@ -158,7 +158,13 @@ function init() {
     	});
 	});
 	$("#budget > .list-header > .plus").click( function() {
-		$('#add-budget-modal').dialog();
+		$('#add-budget-modal').dialog({
+			buttons: {
+				close: function() {
+        			$( this ).dialog( "close" );
+      			}
+      		}
+		});
 	});
 	$("#groups > .list-header > .plus").click( showPage("groups"));
 	$("#list > .list-header > .plus").click( function() {
