@@ -119,9 +119,11 @@ function init() {
 	$("#groups > .list-header > h2").click( showPage("groups"));
 	$("#home-menu-link").click( showPage("home"));
 	$("#groups-menu-link").click( showPage("groups"));
+	$("#lists-menu-link").click( showPage("all-lists"));
 
 
-	$("#list").hide();
+	$("#a-list").hide();
+	$("#all-lists").hide();
 	$("#grouppage").hide();
 	$('#add-budget-modal').hide();
 	$('#add-list-modal').hide();
@@ -130,33 +132,9 @@ function init() {
 
 	$("#app-title").click(showPage("home"));
 
-	$("#lists > .list-header > .plus").click( function() {
-		$('#add-list-modal').dialog({
-      		//autoOpen: false,
-      		//height: 300,
-      		//width: 350,
-      		modal: true,
-      		buttons: {
-        		"Create list": function() {
-        			var name = $("#list-name-modal").val();
-        			try {
-        				app.addList(name);
-        				populateLists();
-        				$( this ).dialog( "close" );
-        			} catch (err) {
-        				console.log(err.message);
-        			}
-          			
-        		},
-        		Cancel: function() {
-          			$( this ).dialog( "close" );
-        		}
-      		},
-      		close: function() {
-        		$("#list-name-modal").val("");
-      		}
-    	});
-	});
+	$("#lists > .list-header > .plus").click( addListCallback() );
+	$("#all-lists > .list-header > .plus").click( addListCallback() );
+
 	$("#budget > .list-header > .plus").click( function() {
 		$('#add-budget-modal').dialog({
 			buttons: {
@@ -167,7 +145,7 @@ function init() {
 		});
 	});
 	$("#groups > .list-header > .plus").click( showPage("groups"));
-	$("#list > .list-header > .plus").click( function() {
+	$("#a-list > .list-header > .plus").click( function() {
 		$('#add-item-modal').dialog({
       		//autoOpen: false,
       		//height: 300,
@@ -199,7 +177,7 @@ function init() {
     	});
 	});
 
-	$("#list > .list-controls").children().click(function() {
+	$("#a-list > .list-controls").children().click(function() {
 		switch($(this).html()) {
 			case "Move":
 				alert("Move Action: Not yet implemented.");
@@ -211,9 +189,51 @@ function init() {
 				console.log("Unrecognized list control click");
 		}
 	});
+	$("#all-lists > .list-controls").children().click(function() {
+		switch($(this).html()) {
+			case "Delete":
+				alert("Delete Action: Not yet implemented.");
+				break;
+			default:
+				console.log("Unrecognized list control click");
+		}
+	});
 
 }
 
+
+function addListCallback() {
+	return function() {
+		$('#add-list-modal').dialog({
+      		//autoOpen: false,
+      		//height: 300,
+      		//width: 350,
+      		modal: true,
+      		buttons: {
+        		"Create list": function() {
+        			var name = $("#list-name-modal").val();
+        			try {
+        				app.addList(name);
+        				// hack to populate lists no matter which page user is on
+        				populateLists("#list-names");		// homepage list
+        				populateLists("#list-names-list");  // list on lists page
+
+        				$( this ).dialog( "close" );
+        			} catch (err) {
+        				console.log(err.message);
+        			}
+          			
+        		},
+        		Cancel: function() {
+          			$( this ).dialog( "close" );
+        		}
+      		},
+      		close: function() {
+        		$("#list-name-modal").val("");
+      		}
+    	});
+	};
+}
 
 function showView( pageId ) {
 	if (pageId !== currentView) {
@@ -229,8 +249,8 @@ function setItemStatusClass( item ) {
 	return (item.getStatus() === 'unpacked') ? 'unpacked' : '';
 }
 
-function populateLists() {
-	var container = $("#list-names");
+function populateLists( containerName ) {
+	var container = $(containerName);
 	container.empty(); // clear container
 	var lists = app.getLists();
 	for (var i = 0; i < lists.length; i++) {
@@ -243,8 +263,8 @@ function populateLists() {
 
 
 function populateListView( listName ) {
-	$("#list > .list-header > h2").html( listName );
-	var container = $("#list > .list");
+	$("#a-list > .list-header > h2").html( listName );
+	var container = $("#a-list > .list");
 	container.empty(); // clear container
 	var items = app.getList(listName).getItems();
 	for (var i = 0; i < items.length; i++) {
@@ -316,13 +336,18 @@ function joinGroup( index ) {
 	}
 }
 
+function goToAllListsPage() {
+	populateLists("#list-names-list");
+	showView("#all-lists");
+}
+
 function goToListPage( listName ) {
 	populateListView(listName);
-	showView("#list");
+	showView("#a-list");
 }
 
 function goToHomePage() {
-	populateLists();
+	populateLists("#list-names");
 	populateGroups();
 	showView("#homepage");
 }
@@ -340,6 +365,9 @@ function showPage( page, args ) {
 		//console.log(args);
 
 		switch (page) {
+			case "all-lists":
+				goToAllListsPage();
+				break;
 			case "list":
 				goToListPage(args.name);
 				break;
