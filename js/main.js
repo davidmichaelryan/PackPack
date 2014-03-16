@@ -2,7 +2,7 @@
 
 
 // Create javascript backend
-var app = new PackPack.App("menlocaleb");
+var app = new PackPack.App("PackPack");
 // store the current variable;
 var currentView = "#homepage";
 
@@ -122,13 +122,9 @@ function init() {
 	$("#lists-menu-link").click( showPage("all-lists"));
 
 
-	$("#a-list").hide();
-	$("#all-lists").hide();
-	$("#grouppage").hide();
-	$('#add-budget-modal').hide();
-	$('#add-list-modal').hide();
-	$('#add-group-modal').hide();
-	$('#add-item-modal').hide();
+	$(".content-wrapper").hide(); 	// hide all pages
+	$("#homepage").show();			// then show homepage
+
 
 	$("#app-title").click(showPage("home"));
 
@@ -322,6 +318,10 @@ function populateGroupsView() {
 
 }
 
+function populateIndividualGroupView( groupName ) {
+	$("#individual-group-page > .list-header > h2").html( groupName );
+}
+
 function leaveGroup( index ) {
 	return function() {
 		app.leaveGroup(index);
@@ -357,6 +357,11 @@ function goToGroupsPage() {
 	showView("#grouppage");
 }
 
+function goToIndividualGroupPage( groupName ) {
+	populateIndividualGroupView(groupName);
+	showView("#individual-group-page");
+}
+
 
 function showPage( page, args ) {
 	// return function so it stores arguments in closure for callbacks
@@ -381,7 +386,7 @@ function showPage( page, args ) {
 				goToGroupsPage();
 				break;
 			case "group-page":
-				console.log(args.name);
+				goToIndividualGroupPage(args.name);
 				break;
 			default:
 				alert("error");
