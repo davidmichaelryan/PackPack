@@ -22,6 +22,20 @@ $(document).ready(function() {
 	$("#menu a").click(function() {
 		toggleMenu();
 	});
+
+	$('.search').focus(function() {
+		if ($(this).val() === "Search Groups") {
+			$(this).val("");
+			$(this).addClass('search-active');
+		} 
+	});
+
+	$('.search').blur(function() {
+		if ($(this).val() === "") {
+			$(this).val("Search Groups");
+			$(this).removeClass('search-active');
+		} 
+	});
 });
 
 function toggleMenu() {
