@@ -120,6 +120,7 @@ function init() {
 	$("#home-menu-link").click( showPage("home"));
 	$("#groups-menu-link").click( showPage("groups"));
 	$("#lists-menu-link").click( showPage("all-lists"));
+	$("#budget-menu-link").click( showPage("budget-page"));
 
 
 	$(".content-wrapper").hide(); 	// hide all pages
@@ -306,11 +307,11 @@ function populateGroupsView() {
 		
 		if (groups[i].isMember()) {
 			myGroupsContainer.append(html);
-			myGroupsContainer.children().last().click( showPage("group-page", { 'name' : groups[i].name}));
+			myGroupsContainer.children().last().find("a").click( showPage("group-page", { 'name' : groups[i].name}));
 			myGroupsContainer.children().last().find(".group-membership").click( leaveGroup(i));
 		} else {
 			otherGroupsContainer.append(html);
-			otherGroupsContainer.children().last().click( showPage("group-page", { 'name' : groups[i].name}));
+			otherGroupsContainer.children().last().find("a").click( showPage("group-page", { 'name' : groups[i].name}));
 			otherGroupsContainer.children().last().find(".group-membership").click( joinGroup(i));
 		}
 		
@@ -325,14 +326,16 @@ function populateIndividualGroupView( groupName ) {
 function leaveGroup( index ) {
 	return function() {
 		app.leaveGroup(index);
-		populateGroupsView();
+		//$("#group-" + index + " > span").removeClass("member").addClass("notMember").html("Join"); // if want to leave item in place
+		populateGroupsView(); //if want to redraw whole view
 	}
 }
 
 function joinGroup( index ) {
 	return function() {
 		app.joinGroup(index);
-		populateGroupsView();
+		//$("#group-" + index + " > span").removeClass("notMember").addClass("member").html("Leave");
+		populateGroupsView(); //if want to redraw whole view
 	}
 }
 
@@ -387,6 +390,9 @@ function showPage( page, args ) {
 				break;
 			case "group-page":
 				goToIndividualGroupPage(args.name);
+				break;
+			case "budget-page":
+				showView("#budget-page");
 				break;
 			default:
 				alert("error");
